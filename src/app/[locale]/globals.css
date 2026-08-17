@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-panel-bg: rgba(15, 15, 20, 0.55);
+  --color-sidebar-bg: #0a0a0a;
+  --color-sidebar-active-bg: rgba(255, 255, 255, 0.06);
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.55);
+  --color-text-muted: rgba(255, 255, 255, 0.35);
+
+  --color-accent: #f5a623;
+  --color-accent-hover: #ffb84d;
+
+  --font-sans: var(--font-inter);
+}
