@@ -4,5 +4,28 @@
     "experience": "Experiencia",
     "projects": "Proyectos",
     "contact": "Contacto"
+  },
+  "home": {
+    "availability": "Disponible para trabajo remoto",
+    "ctaPrimary": "Ver Experiencia",
+    "ctaPrimaryAria": "Ver la experiencia laboral de Lautaro",
+    "ctaSecondary": "Contactar",
+    "ctaSecondaryAria": "Ir a la sección de contacto",
+    "yearsExperience": "+4 años de experiencia",
+    "focusArea": "Fullstack & Desarrollo con IA",
+    "bilingual": "Bilingüe (ES / EN B2)",
+    "aboutHeading": "Un poco sobre mí",
+    "aboutNote": "Aprender la sintaxis de un lenguaje de programación toma un fin de semana; igualmente, mi experiencia principal es con los siguientes lenguajes y frameworks:"
+  },
+  "experience": {
+    "present": "Actualidad"
+  },
+  "contact": {
+    "heading": "Contacto",
+    "downloadCv": "Descargar CV",
+    "downloadCvAria": "Descargar el CV de Lautaro en PDF"
+  },
+  "projects": {
+    "comingSoon": "Próximamente."
   }
 }

@@ -1,26 +1,28 @@
 interface ISidebarNavItemProps {
-  href: string;
   label: string;
+  translatedLabel: string;
   isActive: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 export const SidebarNavItem = ({
-  href,
   label,
+  translatedLabel,
   isActive,
   onClick,
 }: ISidebarNavItemProps) => {
   return (
     <li>
-      <a
-        href={href}
+      <button
+        type="button"
         onClick={onClick}
-        className={`flex items-center gap-1 rounded-lg px-4 py-2.5 text-sm ${
+        aria-current={isActive ? 'page' : undefined}
+        aria-label={translatedLabel}
+        className={`focus-visible:outline-accent flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left font-mono text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 ${
           isActive ? 'bg-sidebar-active-bg' : ''
         }`}
       >
-        <span className={isActive ? 'text-accent' : 'text-text-secondary'}>
+        <span className={isActive ? 'text-accent' : 'text-text-muted'}>
           {'>'}
         </span>
         <span
@@ -28,7 +30,7 @@ export const SidebarNavItem = ({
         >
           {label}
         </span>
-      </a>
+      </button>
     </li>
   );
 };

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "skills": {
+    "better-layout": {
+      "source": "jakubkrehel/skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/better-layout/SKILL.md",
+      "computedHash": "c55d3ca32e2c32918a8ec81769031b77cdfe8557f30ff65ce9bcca4052859e8b"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "4eabc66183767153e404b39d1b839b1c37f2d82d86f0a0d7e880a579d8d62336"
+    }
+  }
+}

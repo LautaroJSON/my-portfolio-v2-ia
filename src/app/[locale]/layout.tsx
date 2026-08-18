@@ -4,9 +4,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { routing } from '@/i18n/routing';
-import { inter } from '@/lib/fonts';
-import { Sidebar } from '@/components/layout/Sidebar';
-import { EditorPanel } from '@/components/layout/EditorPanel';
+import { plexMono, plexSans } from '@/lib/fonts';
 import './globals.css';
 
 interface ILocaleLayoutProps {
@@ -30,7 +28,7 @@ const LocaleLayout = async ({ children, params }: ILocaleLayoutProps) => {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.variable}>
+    <html lang={locale} className={`${plexSans.variable} ${plexMono.variable}`}>
       <body className="relative min-h-screen font-sans">
         <Image
           src="/image.png"
@@ -39,12 +37,11 @@ const LocaleLayout = async ({ children, params }: ILocaleLayoutProps) => {
           priority
           className="fixed inset-0 -z-10 object-cover"
         />
-        <div className="fixed inset-0 -z-10 bg-black/20" />
+        <div className="bg-void/45 fixed inset-0 -z-10" />
 
         <NextIntlClientProvider messages={messages}>
-          <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col gap-4 p-4 md:flex-row">
-            <Sidebar />
-            <EditorPanel>{children}</EditorPanel>
+          <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col p-4">
+            {children}
           </div>
         </NextIntlClientProvider>
       </body>

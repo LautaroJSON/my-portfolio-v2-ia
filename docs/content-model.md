@@ -15,7 +15,7 @@ y a historias de usuario por sección. Este es el archivo que reemplaza a la
 ```ts
 // navigation.interface.ts
 interface ISidebarItem {
-  id: "home" | "experience" | "projects" | "contact";
+  id: 'home' | 'experience' | 'projects' | 'contact';
   labelKey: string; // key de next-intl, no el texto plano
   href: string;
 }
@@ -43,12 +43,24 @@ interface ITechnology {
   // opcional a futuro: icon?: string (si se agregan íconos por tech)
 }
 
+// text-fragment.interface.ts
+// Patrón reusable de "texto enriquecido como dato": un párrafo se modela
+// como una lista de fragmentos tipados en vez de un string con marcado
+// (Markdown/HTML) o JSX hardcodeado. El componente que renderiza esto es
+// genérico: itera el array y aplica --color-accent según el flag.
+interface ITextFragment {
+  text: string;
+  accent?: boolean; // true = resaltar en --color-accent (ver design-system.md)
+}
+// Uso actual: contenido de Home. Reusable a futuro para descripciones de
+// IExperience si se quiere resaltar tecnologías dentro del párrafo.
+
 // contact.interface.ts
 interface ISocialLink {
-  platform: "github" | "linkedin" | "email";
+  platform: 'github' | 'linkedin' | 'email';
   label: string;
   url: string; // para email: "mailto:..."
-  icon: "Github" | "Linkedin" | "Mail"; // nombre exacto del ícono lucide-react
+  icon: 'Github' | 'Linkedin' | 'Mail'; // nombre exacto del ícono lucide-react
 }
 
 interface IContactInfo {
@@ -136,6 +148,72 @@ interface IProject {
 - Fuente de texto: adaptar el "Resumen profesional" de `cv.md`, no copiar
   literal (está en 3ra persona formal, para Home conviene tono más directo/1ra persona).
 
+#### Copy final (usar tal cual en `/src/content/{locale}/home.ts`)
+
+Modelado como `ITextFragment[]`, no como string plano — ver interfaz
+`ITextFragment` más arriba para el porqué de este patrón.
+
+```ts
+// es
+export const homeContentEs: ITextFragment[] = [
+  {
+    text: 'Hola, soy Lautaro — Fullstack Developer con más de 4 años construyendo aplicaciones web con ',
+  },
+  { text: 'React', accent: true },
+  { text: ', ' },
+  { text: 'Next.js', accent: true },
+  { text: ' y ' },
+  { text: 'TypeScript', accent: true },
+  {
+    text: '. Últimamente estoy llevando ese stack un paso más allá: integrando ',
+  },
+  { text: 'LLMs', accent: true },
+  { text: ', ' },
+  { text: 'Spec-Driven Development', accent: true },
+  { text: ', skills y ' },
+  { text: 'agentes de IA', accent: true },
+  {
+    text: ' en mi flujo de trabajo para diseñar y shippear software más rápido, sin perder calidad.',
+  },
+];
+
+// en
+export const homeContentEn: ITextFragment[] = [
+  {
+    text: "Hi, I'm Lautaro — a Fullstack Developer with 4+ years building web apps with ",
+  },
+  { text: 'React', accent: true },
+  { text: ', ' },
+  { text: 'Next.js', accent: true },
+  { text: ', and ' },
+  { text: 'TypeScript', accent: true },
+  { text: ". Lately I've been pushing that stack further: weaving " },
+  { text: 'LLMs', accent: true },
+  { text: ', ' },
+  { text: 'Spec-Driven Development', accent: true },
+  { text: ', skills, and ' },
+  { text: 'AI agents', accent: true },
+  {
+    text: ' into my workflow to design and ship software faster without cutting corners.',
+  },
+];
+```
+
+Render esperado en `HomeSection.tsx` (referencia, no literal):
+
+```tsx
+<p>
+  {homeContent.map((fragment, i) => (
+    <span
+      key={i}
+      className={fragment.accent ? 'text-accent font-semibold' : undefined}
+    >
+      {fragment.text}
+    </span>
+  ))}
+</p>
+```
+
 ### 2. Experiencia / Experience
 
 > Como visitante (probable reclutador/lead técnico) quiero ver el historial
@@ -178,11 +256,71 @@ interface IProject {
 - No mostrar teléfono, DNI, dirección ni fecha de nacimiento (dato sensible,
   ver `AGENTS.md`).
 
+#### Datos (`/src/content/contact.ts` — un solo archivo, NO por locale)
+
+Los datos de contacto (email, URLs) no cambian entre idiomas, solo los
+labels de UI que los acompañan (esos van en `messages/{locale}.json`, no acá).
+
+```ts
+export const contactInfo: IContactInfo = {
+  email: 'fernandez.n.lautaro@gmail.com',
+  cvDownloadUrl: '/cv-lautaro-fernandez.pdf',
+  socialLinks: [
+    {
+      platform: 'email',
+      label: 'Email',
+      url: 'mailto:fernandez.n.lautaro@gmail.com',
+      icon: 'Mail',
+    },
+    {
+      platform: 'linkedin',
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/lautaro-fernandez-json/',
+      icon: 'Linkedin',
+    },
+    {
+      platform: 'github',
+      label: 'GitHub',
+      url: 'PENDIENTE — completar antes de implementar este ítem',
+      icon: 'Github',
+    },
+  ],
+};
+```
+
+- Si `github.url` sigue como placeholder al momento de implementar, **no
+  renderizar ese `SocialLink`** (filtrar el array, no mostrar un link roto).
+- `icon` mapea 1:1 al nombre del componente de `lucide-react`
+  (`import { Mail, Linkedin, Github, Download } from "lucide-react"`).
+
+#### Strings de UI (`messages/{locale}.json`, no en `content.ts`)
+
+```json
+{
+  "contact": {
+    "heading": "Get in touch", // en — "Contacto" / heading equivalente en es
+    "downloadCv": "Download CV", // es: "Descargar CV"
+    "downloadCvAria": "Download Lautaro's CV as PDF" // accesibilidad, ver nota abajo
+  }
+}
+```
+
+#### Componente `ContactSection`
+
+- Reusa `SocialLink` (ya listado en `AGENTS.md` bajo `/components/ui`) para
+  cada ítem de `contactInfo.socialLinks`, iterando el array — no un
+  componente hardcodeado por red social.
+- El botón de descarga de CV es un `<a>` con `download` attribute apuntando
+  a `cvDownloadUrl`, con ícono `Download` de lucide-react.
+- Accesibilidad: cada `SocialLink`/botón necesita `aria-label` descriptivo
+  (no solo el ícono sin texto), ej. `aria-label="LinkedIn — Lautaro Fernandez"`.
+- Sigue el patrón visual de `design-system.md`: dentro del `EditorPanel`
+  existente, no un layout nuevo aparte.
+
 ---
 
 ## Pendientes / a confirmar con el autor
 
 - [ ] URL de GitHub para `ISocialLink`
-- [ ] Texto final de Home (versión corta en 1ra persona, EN y ES)
 - [ ] PDF del CV para `public/cv-lautaro-fernandez.pdf`
 - [ ] Descripción corta para el puesto de Frontend Architect (o se deja solo con la existente de `cv.md`)

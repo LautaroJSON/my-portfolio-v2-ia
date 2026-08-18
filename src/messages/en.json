@@ -4,5 +4,28 @@
     "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact"
+  },
+  "home": {
+    "availability": "Available for remote work",
+    "ctaPrimary": "View Experience",
+    "ctaPrimaryAria": "View Lautaro's work experience",
+    "ctaSecondary": "Get in Touch",
+    "ctaSecondaryAria": "Go to the contact section",
+    "yearsExperience": "4+ yrs experience",
+    "focusArea": "Fullstack & AI-Assisted Dev",
+    "bilingual": "Bilingual (ES / EN B2)",
+    "aboutHeading": "A bit about me",
+    "aboutNote": "Learning a new language's syntax takes about a weekend — that said, my main hands-on experience is with the following languages and frameworks:"
+  },
+  "experience": {
+    "present": "Present"
+  },
+  "contact": {
+    "heading": "Get in touch",
+    "downloadCv": "Download CV",
+    "downloadCvAria": "Download Lautaro's CV as PDF"
+  },
+  "projects": {
+    "comingSoon": "Coming soon."
   }
 }
