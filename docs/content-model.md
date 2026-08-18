@@ -322,5 +322,3 @@ export const contactInfo: IContactInfo = {
 ## Pendientes / a confirmar con el autor
 
 - [ ] URL de GitHub para `ISocialLink`
-- [ ] PDF del CV para `public/cv-lautaro-fernandez.pdf`
-- [ ] Descripción corta para el puesto de Frontend Architect (o se deja solo con la existente de `cv.md`)

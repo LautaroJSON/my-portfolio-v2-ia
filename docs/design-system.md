@@ -163,7 +163,62 @@ scrollbar-color: var(--color-border-strong) transparent;
 - Fondo: imagen full-bleed (`position: fixed`, `object-fit: cover`,
   `inset: 0`, `z-index: -1`), oscurecida con un overlay `bg-void/45` (no un
   `bg-black/20` genérico — usa el mismo tono `--color-void` que el resto de
-  la paleta) para contraste.
+  la paleta) para contraste. Implementación completa en "Background" más
+  abajo.
+
+## Background
+
+Archivo: `public/background-mountain.png` — la foto de montaña que da pie al
+glassmorphism del panel (ver "Concepto"). Se implementa en
+`src/app/[locale]/layout.tsx`, no por componente, porque es un elemento de
+layout raíz compartido por todas las secciones, no algo que dependa de
+`activeSection`.
+
+```tsx
+import Image from 'next/image';
+import backgroundMountain from '../../../public/background-mountain.png';
+
+<Image
+  src={backgroundMountain}
+  alt=""
+  fill
+  priority
+  className="fixed inset-0 -z-10 object-cover"
+/>;
+<div className="bg-void/45 fixed inset-0 -z-10" />;
+```
+
+- **Import estático** (`import backgroundMountain from '...png'`), no
+  `src="/background-mountain.png"` como string: al importar el archivo,
+  Next.js infiere `width`/`height` automáticamente y evita el layout shift
+  que un `<Image fill>` con `src` de string puede introducir mientras carga
+  la imagen — es la forma recomendada por Next.js para assets locales que
+  viven en el repo (no vienen de un CMS/URL externa).
+- `alt=""`: la imagen es puramente decorativa (ambientación visual, no
+  contenido informativo) — `alt` vacío es la práctica correcta de
+  accesibilidad para que los lectores de pantalla la salteen, en vez de
+  narrar un texto descriptivo irrelevante.
+- `fill`: la imagen no tiene tamaño intrínseco en el layout — ocupa el 100%
+  del contenedor posicionado (`html`/`body`), que es el comportamiento que
+  necesita un fondo full-bleed.
+- `priority`: es contenido above-the-fold visible apenas carga la página
+  (todo el fondo depende de esta imagen) — le dice a Next.js que la
+  precargue en vez de aplicar lazy loading por defecto, evitando el flash
+  sin fondo al entrar.
+- `className="fixed inset-0 -z-10 object-cover"`:
+  - `fixed inset-0`: cubre el viewport completo y **no scrollea** — no hay
+    scroll de página en este layout (ver "Panel principal — altura fija con
+    scroll interno"), así que el fondo queda estático detrás de todo.
+  - `-z-10`: la manda detrás del contenido y del overlay de contraste, que
+    también son `fixed inset-0` pero sin `z-index` negativo.
+  - `object-cover`: recorta la imagen para llenar el viewport sin
+    distorsionar el aspect ratio, igual que `background-size: cover` — el
+    criterio "full-bleed" del sistema (ver "Layout general").
+- El `<div className="bg-void/45 fixed inset-0 -z-10" />` inmediatamente
+  después es el overlay de contraste: mismo `--color-void` que el resto de
+  la paleta (no un negro genérico), al 45% de opacidad, para que el texto
+  `--color-bone` sobre el panel de glass siga siendo legible sin apagar la
+  foto por completo.
 
 ## Comportamiento de navegación y layout
 

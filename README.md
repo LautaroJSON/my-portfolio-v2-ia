@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Lautaro Fernandez
 
-## Getting Started
+Portfolio personal de Lautaro Fernandez, Senior Fullstack Developer. Interfaz
+con estética de editor de código (sidebar de navegación tipo árbol de
+archivos, panel principal con gutter de números de línea, acento ámbar tipo
+terminal de fósforo sobre base negra).
 
-First, run the development server:
+## Stack
+
+- **Framework:** [Next.js](https://nextjs.org) 16 (App Router)
+- **Lenguaje:** TypeScript (estricto)
+- **Estilos:** Tailwind CSS 4
+- **Íconos:** [lucide-react](https://lucide.dev)
+- **i18n:** [next-intl](https://next-intl.dev), con routing por segmento
+  `[locale]` (`/en`, `/es`). Locale por defecto: `en`.
+- **Deploy target:** Vercel
+
+## Primeros pasos
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts disponibles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script          | Descripción                             |
+| --------------- | ---------------------------------------- |
+| `npm run dev`   | Levanta el servidor de desarrollo        |
+| `npm run build` | Build de producción                      |
+| `npm run start` | Sirve el build de producción             |
+| `npm run lint`  | Corre ESLint                             |
 
-## Learn More
+## Estructura del proyecto
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/[locale]/        # Layout y página raíz, ruteo por idioma
+├── components/
+│   ├── layout/           # Sidebar, EditorPanel, TabStrip, StatusBar
+│   ├── sections/         # Home, Experience, Projects, Contact
+│   └── ui/                # ExperienceCard, TechBadge, SocialLink, etc.
+├── content/               # Datos de negocio (experiencia, contacto, home),
+│                          # separados por idioma en content/{en,es}
+├── interfaces/            # Interfaces TypeScript del dominio (prefijo I)
+├── i18n/                  # Configuración de next-intl (routing, request)
+├── lib/                   # Utilidades (fechas, navegación, fuentes)
+└── messages/              # Strings de UI vía next-intl (en.json, es.json)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ver [AGENTS.md](./AGENTS.md) para las convenciones de código completas y
+[docs/](./docs) para el design system y el modelo de contenido.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Secciones
 
-## Deploy on Vercel
+- **Home** — presentación breve (rol + stack principal).
+- **Experience** — historial laboral con fechas, duración calculada en
+  runtime y tecnologías por puesto.
+- **Projects** — placeholder, sin contenido real todavía.
+- **Contact** — email, descarga de CV y links a redes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## i18n
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Rutas `/en` y `/es`. El locale por defecto es `en`.
+- Todo el texto visible sale de `next-intl` (`src/messages/{locale}.json`) o
+  de `src/content/{locale}/...`, sin strings hardcodeados en componentes.
+
+## Documentación interna
+
+| Archivo                                    | Contenido                                  |
+| ------------------------------------------- | ------------------------------------------- |
+| [AGENTS.md](./AGENTS.md)                    | Convenciones de código y arquitectura       |
+| [docs/design-system.md](./docs/design-system.md) | Tokens visuales y componentes del estilo "terminal" |
+| [docs/content-model.md](./docs/content-model.md) | Modelo de datos e historias de usuario por sección |
+| [docs/cv.md](./docs/cv.md)                  | Fuente de datos personales/profesionales (uso interno, no exponer datos sensibles) |

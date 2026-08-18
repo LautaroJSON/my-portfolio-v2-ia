@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import Image from 'next/image';
+import backgroundMountain from '../../../public/background-mountain.png';
 import { routing } from '@/i18n/routing';
 import { plexMono, plexSans } from '@/lib/fonts';
 import './globals.css';
@@ -23,15 +24,13 @@ const LocaleLayout = async ({ children, params }: ILocaleLayoutProps) => {
     notFound();
   }
 
-  setRequestLocale(locale);
-
   const messages = await getMessages();
 
   return (
     <html lang={locale} className={`${plexSans.variable} ${plexMono.variable}`}>
       <body className="relative min-h-screen font-sans">
         <Image
-          src="/image.png"
+          src={backgroundMountain}
           alt=""
           fill
           priority
