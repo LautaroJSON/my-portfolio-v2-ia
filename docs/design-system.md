@@ -417,15 +417,43 @@ scan-rhythm en una lista de 3 cards densas dentro del scroll wrapper.
 > tecnologías) — este cambio es de **agrupación visual**, no de orden de
 > datos.
 
-### Projects (placeholder)
+### Projects (`ProjectCard`)
 
-- Sin restructuración — ya es apropiadamente minimalista para un estado
-  vacío. Reusa `SectionEyebrow` (`// projects`) igual que las demás
-  secciones.
-- Único ajuste: más presencia vertical para la línea `// TODO` respecto al
-  heading (gap mayor), para que se lea como "placeholder intencional" y no
-  contenido incompleto, dado el espacio libre que deja el scroll wrapper de
-  95vh con tan poco contenido.
+- Estado vacío (`projects.ts` del locale activo sin entradas): sin restructuración, línea
+  `// TODO` bajo el heading — se lee como "placeholder intencional", no
+  contenido incompleto.
+- Estado con contenido: **una sola columna** (`grid-cols-1 gap-6`), cada
+  card ocupa el ancho completo del `panel` — no hay grilla de 2 columnas.
+  La adaptación mobile/desktop no la resuelve el grid, la resuelve la
+  card misma según orientación (ver siguiente punto).
+- Card (`border border-border-subtle rounded-lg`, sin el radio mayor del
+  panel exterior — mismo criterio de esquinas precisas que el resto del
+  chrome interno). Orientación del layout via el variant nativo de
+  Tailwind `landscape:`/`portrait:` (media feature `orientation`, no un
+  breakpoint de ancho — reacciona a un teléfono rotado igual que a una
+  ventana de escritorio):
+  - **`portrait` (default, mobile-first)**: `flex-col` — media arriba
+    (`aspect-video`, ancho completo, `border-b`), info abajo. Es la forma
+    "card" clásica.
+  - **`landscape`**: `flex-row` — media a la izquierda con ancho fijo
+    (`w-64`, `border-e` en vez de `border-b`) y alto estirado al de la
+    columna de info (`align-items: stretch` por defecto en flex), info a
+    la derecha ocupando el resto (`flex-1`). Mismo componente, no hay un
+    `ProjectCardHorizontal` aparte.
+  1. **Media** (`object-cover`) — opcional. Sin imagen, el bloque **no
+     colapsa**: placeholder con ícono (`Code2` de `lucide-react`) +
+     `// no preview` en mono, sobre `--color-sidebar-bg`, en ambas
+     orientaciones.
+  2. **Título** — sans, bold, nombre propio del proyecto (no se traduce).
+  3. **Descripción breve** — sans, `text-secondary`, `flex-1` (empuja los
+     botones al pie de la card aunque la descripción sea corta, para
+     alinear la fila de acciones entre cards de distinta altura).
+  4. **Tech tags** (opcional) — mismo tratamiento que `TechBadge` de
+     Experience.
+  5. **Acciones** — hasta dos `LinkButton`: "Live demo" (`primary`, solo
+     si `deployUrl` existe) + "Code" (`secondary`, siempre, con
+     `GithubIcon`).
+- Mismo `SectionEyebrow` (`// projects`) que las demás secciones.
 
 ### Contact
 
@@ -505,18 +533,20 @@ del diseño se mantiene deliberadamente tranquilo.
 
 ## Componentes derivados de este sistema
 
-| Componente              | Descripción                                                                                           |
-| ----------------------- | ----------------------------------------------------------------------------------------------------- |
-| `EditorPanel`           | Wrapper con glass + sidebar + tabs + gutter/contenido con scroll + status bar, `height: 95vh` fijo    |
-| `LineNumberGutter`      | Columna de números (`font-mono`, alineada a la derecha), recibe `lineCount`                           |
-| `Sidebar`               | File explorer: `NAV_ITEMS` como botones, controlado por `activeSection`/`onSelect`                    |
-| `SidebarNavItem`        | Ítem individual de nav, label = nombre de archivo, `aria-label` = label traducido                     |
-| `TabStrip`              | Fila de tabs por sección, misma fuente de estado que la sidebar (ver Firma visual)                    |
-| `StatusBar`             | Franja inferior con datos reales del estado activo (ver Firma visual)                                 |
-| `SectionEyebrow`        | Label `// texto` sobre cada heading de sección                                                        |
-| `ExperienceCard`        | Card de puesto laboral con 4 niveles de agrupación (ver Composición y jerarquía por sección)          |
-| `TechBadge`             | Nombre de tecnología en `--color-accent`, `font-mono` — no es un "chip" con fondo, es texto resaltado |
-| `Avatar/Badge` circular | Esquina inferior izquierda, fuera del panel, logo/inicial — **sin implementar todavía**               |
+| Componente              | Descripción                                                                                                                               |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `EditorPanel`           | Wrapper con glass + sidebar + tabs + gutter/contenido con scroll + status bar, `height: 95vh` fijo                                        |
+| `LineNumberGutter`      | Columna de números (`font-mono`, alineada a la derecha), recibe `lineCount`                                                               |
+| `Sidebar`               | File explorer: `NAV_ITEMS` como botones, controlado por `activeSection`/`onSelect`                                                        |
+| `SidebarNavItem`        | Ítem individual de nav, label = nombre de archivo, `aria-label` = label traducido                                                         |
+| `TabStrip`              | Fila de tabs por sección, misma fuente de estado que la sidebar (ver Firma visual)                                                        |
+| `StatusBar`             | Franja inferior con datos reales del estado activo (ver Firma visual)                                                                     |
+| `SectionEyebrow`        | Label `// texto` sobre cada heading de sección                                                                                            |
+| `ExperienceCard`        | Card de puesto laboral con 4 niveles de agrupación (ver Composición y jerarquía por sección)                                              |
+| `TechBadge`             | Nombre de tecnología en `--color-accent`, `font-mono` — no es un "chip" con fondo, es texto resaltado                                     |
+| `ProjectCard`           | Card de proyecto: media opcional, título, descripción, tech tags, acciones (ver Projects)                                                 |
+| `LinkButton`            | `<a>` con variantes `primary`/`secondary` (mismos tokens que `HeroCtaButton`); usado en Projects y en el botón de descargar CV de Contact |
+| `Avatar/Badge` circular | Esquina inferior izquierda, fuera del panel, logo/inicial — **sin implementar todavía**                                                   |
 
 ## Íconos (lucide-react)
 

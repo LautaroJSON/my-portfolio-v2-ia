@@ -69,13 +69,15 @@ interface IContactInfo {
   socialLinks: ISocialLink[];
 }
 
-// projects.interface.ts (placeholder, sección "Proyectos" a futuro)
+// project.interface.ts
 interface IProject {
+  id: string;
   name: string;
   description: string;
-  technologies: ITechnology[];
-  url?: string;
-  repoUrl?: string;
+  image?: string; // path en /public, ej. "/projects/thinking-notes.png"
+  repoUrl: string;
+  deployUrl?: string; // opcional — no todos los proyectos tienen deploy público
+  technologies?: string[];
 }
 ```
 
@@ -232,15 +234,33 @@ Render esperado en `HomeSection.tsx` (referencia, no literal):
 - Componente principal: `ExperienceCard` (uno por `IExperience`), dentro de
   `ExperienceSection`.
 
-### 3. Proyectos / Projects — placeholder (feature futura)
+### 3. Proyectos / Projects
 
-> Como visitante quiero ver proyectos destacados con demo/repo, pero esta
-> sección todavía no tiene contenido real.
+> Como visitante quiero ver proyectos destacados con imagen, descripción,
+> demo y repositorio, para evaluar trabajo concreto más allá de la
+> experiencia laboral.
 
-- Implementar la sección y el ítem de nav, pero con estado vacío explícito
-  (ej. "Próximamente" / "Coming soon"), no ocultar el ítem del sidebar.
-- Dejar el componente `ProjectCard` tipado con `IProject` ya listo para
-  cuando se cargue contenido real.
+- Fuente de datos: `src/content/{locale}/projects.ts` (`PROJECTS:
+IProject[]`), separado por idioma igual que `experience.ts` — el mismo
+  patrón de importación (`PROJECTS as PROJECTS_EN` / `PROJECTS_ES`, con
+  un `PROJECTS_BY_LOCALE` en `ProjectsSection`) que ya usan
+  `ExperienceSection`/`HomeSection`. Agregar un proyecto = agregar un
+  objeto al array en **ambos** archivos (en/es), con el mismo `id`.
+- Ambos arrays se mantienen deliberadamente **vacíos por defecto**
+  (`PROJECTS: IProject[] = []`) — el autor carga sus propios proyectos
+  (nombre, descripción, URLs de repo/deploy, imagen) editando los `.ts`
+  directamente, no se inventan datos.
+- Estado vacío: si el array del locale activo no tiene entradas,
+  `ProjectsSection` muestra el mensaje `// TODO: {comingSoon}` (mismo
+  tratamiento que antes), no oculta el ítem de nav.
+- Con entradas: grilla `grid-cols-1 sm:grid-cols-2` de `ProjectCard`,
+  mobile-first — ver `design-system.md` para el detalle visual.
+- Imágenes: opcionales, sueltas en `public/projects/*.png`, referenciadas
+  por path relativo en `image`. Sin imagen → placeholder decorativo (no
+  colapsa el bloque, mantiene el ritmo de la grilla).
+- `repoUrl` es obligatorio (siempre hay repo); `deployUrl` y
+  `technologies` son opcionales — el botón de demo solo se renderiza si
+  `deployUrl` existe.
 
 ### 4. Contacto / Contact
 

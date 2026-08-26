@@ -2,6 +2,7 @@ import { Download } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { SocialLink } from '@/components/ui/SocialLink';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { LinkButton } from '@/components/ui/LinkButton';
 import { contactInfo } from '@/content/contact';
 
 export const ContactSection = async () => {
@@ -32,15 +33,15 @@ export const ContactSection = async () => {
           ))}
         </div>
 
-        <a
+        <LinkButton
           href={contactInfo.cvDownloadUrl}
+          variant="secondary"
           download
-          aria-label={t('downloadCvAria')}
-          className="border-border-subtle text-text-secondary hover:bg-accent-dim focus-visible:outline-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 font-mono text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+          ariaLabel={t('downloadCvAria')}
         >
           <Download size={20} strokeWidth={1.5} />
           {t('downloadCv')}
-        </a>
+        </LinkButton>
       </div>
     </section>
   );

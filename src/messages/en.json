@@ -26,6 +26,11 @@
     "downloadCvAria": "Download Lautaro's CV as PDF"
   },
   "projects": {
-    "comingSoon": "Coming soon."
+    "comingSoon": "Coming soon.",
+    "noPreview": "// no preview",
+    "demo": "Live demo",
+    "demoAria": "View live demo of {name}",
+    "code": "Code",
+    "codeAria": "View {name} source code on GitHub"
   }
 }

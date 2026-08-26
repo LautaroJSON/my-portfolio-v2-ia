@@ -26,6 +26,11 @@
     "downloadCvAria": "Descargar el CV de Lautaro en PDF"
   },
   "projects": {
-    "comingSoon": "Próximamente."
+    "comingSoon": "Próximamente.",
+    "noPreview": "// sin vista previa",
+    "demo": "Demo en vivo",
+    "demoAria": "Ver la demo en vivo de {name}",
+    "code": "Código",
+    "codeAria": "Ver el código fuente de {name} en GitHub"
   }
 }

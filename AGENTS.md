@@ -6,12 +6,12 @@ de generar o modificar código.
 
 ## Documentos relacionados (leer también)
 
-| Archivo            | Para qué sirve                                                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Archivo                 | Para qué sirve                                                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `docs/design-system.md` | Tokens visuales, layout, componentes del estilo "terminal"                                                                                 |
 | `docs/content-model.md` | Estructura de datos del contenido (experiencia, contacto, etc.) e HUs por sección                                                          |
 | `docs/cv.md`            | Fuente de verdad de datos personales/profesionales (NO exponer datos sensibles como DNI/dirección en el frontend, solo lo laboral/público) |
-| `.prettierrc`      | Formateo obligatorio                                                                                                                       |
+| `.prettierrc`           | Formateo obligatorio                                                                                                                       |
 
 > ⚠️ `docs/cv.md` contiene datos personales (DNI, dirección, teléfono, fecha de
 > nacimiento) que son para uso interno del autor, NO para mostrar en la web.
@@ -189,7 +189,9 @@ consultarlo primero. Este proyecto se mantiene deliberadamente liviano, cualquie
 - No poner lógica de negocio (cálculo de duración, ordenamiento) dentro del JSX — va en `/lib`.
 - No hardcodear texto visible fuera de `messages/` o `/content`.
 - No exponer datos sensibles de `cv.md` (DNI, dirección, teléfono, fecha de nacimiento).
-- No agregar la sección "Proyectos" con contenido real todavía — queda como
-  placeholder/feature futura (ver `content-model.md`).
+- No inventar proyectos, URLs de repo/deploy ni imágenes para
+  `src/content/{locale}/projects.ts` — esos archivos los completa el
+  autor a mano (ver `content-model.md`). Si están vacíos, la sección debe
+  seguir mostrando el estado "Coming soon", no contenido de relleno.
 - No romper el efecto visual de "editor de código" (gutter de números) al
   agregar nuevas secciones.

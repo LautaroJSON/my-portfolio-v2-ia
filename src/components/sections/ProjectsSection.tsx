@@ -1,9 +1,20 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { ProjectCard } from '@/components/ui/ProjectCard';
+import { PROJECTS as PROJECTS_EN } from '@/content/en/projects';
+import { PROJECTS as PROJECTS_ES } from '@/content/es/projects';
+import type { IProject } from '@/interfaces/project.interface';
+
+const PROJECTS_BY_LOCALE: Record<string, IProject[]> = {
+  en: PROJECTS_EN,
+  es: PROJECTS_ES,
+};
 
 export const ProjectsSection = async () => {
+  const locale = await getLocale();
   const t = await getTranslations('projects');
   const tNav = await getTranslations('nav');
+  const projects = PROJECTS_BY_LOCALE[locale] ?? PROJECTS_EN;
 
   return (
     <section
@@ -20,10 +31,18 @@ export const ProjectsSection = async () => {
         </h2>
       </div>
 
-      <p className="text-text-muted font-mono text-sm">
-        {'// TODO: '}
-        {t('comingSoon')}
-      </p>
+      {projects.length > 0 ? (
+        <div className="grid grid-cols-1 gap-6">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-text-muted font-mono text-sm">
+          {'// TODO: '}
+          {t('comingSoon')}
+        </p>
+      )}
     </section>
   );
 };
