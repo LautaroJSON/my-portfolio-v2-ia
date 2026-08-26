@@ -1,8 +1,11 @@
+import { MapPin } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { HeroCtaButton } from '@/components/ui/HeroCtaButton';
 import { TextFragmentParagraph } from '@/components/ui/TextFragmentParagraph';
 import { TechBadge } from '@/components/ui/TechBadge';
+import { StatusChip } from '@/components/ui/StatusChip';
+import { LocalTimeBadge } from '@/components/ui/LocalTimeBadge';
 import { homeContentEn } from '@/content/en/home';
 import { homeContentEs } from '@/content/es/home';
 import { aboutContentEn } from '@/content/en/about';
@@ -42,12 +45,21 @@ export const HomeSection = async () => {
         <div className="space-y-3">
           <SectionEyebrow label="whoami" />
 
-          <span className="border-border-subtle text-text-secondary inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 font-mono text-xs">
-            <span className="text-accent" aria-hidden="true">
-              ●
-            </span>
-            {t('availability')}
-          </span>
+          <div className="flex flex-wrap items-center gap-3">
+            <StatusChip>
+              <span className="text-accent" aria-hidden="true">
+                ●
+              </span>
+              {t('availability')}
+            </StatusChip>
+
+            <StatusChip>
+              <MapPin size={14} strokeWidth={1.5} aria-hidden="true" />
+              {profile.location}
+            </StatusChip>
+
+            <LocalTimeBadge ariaLabel={t('localTimeAria')} />
+          </div>
         </div>
 
         <div className="space-y-1">

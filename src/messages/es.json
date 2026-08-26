@@ -7,6 +7,7 @@
   },
   "home": {
     "availability": "Disponible para trabajo remoto",
+    "localTimeAria": "Hora local actual de Lautaro en Buenos Aires",
     "ctaPrimary": "Ver Experiencia",
     "ctaPrimaryAria": "Ver la experiencia laboral de Lautaro",
     "ctaSecondary": "Contactar",
@@ -22,6 +23,7 @@
   },
   "contact": {
     "heading": "Contacto",
+    "tagline": "Construyamos algo juntos — suelo responder en el día.",
     "downloadCv": "Descargar CV",
     "downloadCvAria": "Descargar el CV de Lautaro en PDF"
   },

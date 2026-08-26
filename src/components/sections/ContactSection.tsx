@@ -14,7 +14,7 @@ export const ContactSection = async () => {
   return (
     <section
       aria-labelledby="contact-heading"
-      className="min-h-[40vh] space-y-6"
+      className="flex min-h-[40vh] flex-col items-center gap-8 text-center"
     >
       <div className="space-y-1">
         <SectionEyebrow label="contact" />
@@ -26,8 +26,10 @@ export const ContactSection = async () => {
         </h2>
       </div>
 
-      <div className="space-y-6">
-        <div className="flex flex-wrap items-center gap-6">
+      <p className="text-text-secondary max-w-md text-lg">{t('tagline')}</p>
+
+      <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-6">
           {validSocialLinks.map((socialLink) => (
             <SocialLink key={socialLink.platform} socialLink={socialLink} />
           ))}

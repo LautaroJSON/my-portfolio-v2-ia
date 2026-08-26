@@ -7,6 +7,7 @@
   },
   "home": {
     "availability": "Available for remote work",
+    "localTimeAria": "Lautaro's current local time in Buenos Aires",
     "ctaPrimary": "View Experience",
     "ctaPrimaryAria": "View Lautaro's work experience",
     "ctaSecondary": "Get in Touch",
@@ -22,6 +23,7 @@
   },
   "contact": {
     "heading": "Get in touch",
+    "tagline": "Let's build something together — I usually reply within a day.",
     "downloadCv": "Download CV",
     "downloadCvAria": "Download Lautaro's CV as PDF"
   },

@@ -383,6 +383,35 @@ font-semibold`).
 - Gap entre el párrafo y esta fila: suelto (nuevo grupo), no el
   `leading-relaxed` interno del párrafo.
 
+**Status chips** (bajo el eyebrow, antes del `h1`): fila `flex flex-wrap
+gap-3` de `StatusChip` — disponibilidad (`● {texto}`), ubicación (ícono
+`MapPin` de `lucide-react` + `profile.location`) y hora local en vivo
+(`LocalTimeBadge`). Mismo criterio que el resto del sistema: el chrome
+refleja estado real, no texto fijo (ver "Firma visual" — acá aplicado
+fuera del `EditorPanel` chrome, en contenido, porque es información real
+sobre el autor, no decoración). `gap-3` entre chips (12px, controles con
+borde — ver `better-layout`), `flex-wrap` obligatorio: en ES los tres
+chips juntos no entran en una fila de mobile.
+
+- `StatusChip`: wrapper visual común (`border-border-subtle
+text-text-secondary rounded-lg border px-2.5 py-1 font-mono text-xs`),
+  reusado por los tres — evita repetir el estilo de badge tres veces.
+- `LocalTimeBadge` es el único client component de Home (`'use client'`) —
+  recibe el `aria-label` traducido por prop, ya que vive fuera del árbol
+  de Server Components y no puede llamar a `getTranslations` directamente.
+  Formatea con `Intl.DateTimeFormat` fijo a `timeZone:
+'America/Argentina/Buenos_Aires'` (la hora del autor, no la del
+  visitante). Los dígitos quedan `aria-hidden` y el `aria-label` describe
+  el propósito del chip, para no forzar a un lector de pantalla a releer
+  números que cambian cada segundo.
+- Implementado con `useSyncExternalStore` (no `useState`/`useEffect` +
+  `setInterval`): es la API pensada para "valor externo que cambia con el
+  tiempo", con un `getServerSnapshot` que devuelve `null` — evita el
+  mismatch de hidratación que daría intentar leer la hora real en el
+  render de servidor (el server no conoce el reloj del visitante) sin
+  necesitar un `useEffect` que dispare un setState extra en el primer
+  render.
+
 ### Experience (`ExperienceCard`)
 
 Reemplaza el espaciado flat por 4 niveles jerárquicos:
@@ -457,36 +486,27 @@ scan-rhythm en una lista de 3 cards densas dentro del scroll wrapper.
 
 ### Contact
 
-Dos grupos en vez de una fila plana:
+Única sección **centrada** del sitio (`flex flex-col items-center
+text-center`) — Home/Experience/Projects fluyen a la izquierda como
+contenido de editor; Contact es la sección de cierre y funciona como CTA
+final, no como algo que se "lee".
 
-1. **Contacto directo** (lidera, es lo que promete el heading): íconos de
-   Email (`lucide-react`) + LinkedIn (SVG a mano, ver sección Íconos), sin
-   cambios de estilo respecto a lo ya definido.
-2. **CV** (después, gap suelto — nuevo grupo): deja de ser un link de texto
-   plano y pasa a tratarse como un **control**, no como contenido.
+Tres grupos, de arriba a abajo (`gap-8` entre grupos):
 
-**Estilo del botón de descarga de CV** — usa tokens ya existentes en la
-paleta, nada nuevo:
-
-```css
-border: 1px solid var(--color-border-subtle);
-border-radius: 0.5rem; /* rounded-lg — NO pill: el sistema usa esquinas
-                           precisas en todo el chrome interno, un botón
-                           pill rompería esa regla ya establecida (ver
-                           Glassmorphism y Scrollbar) */
-font: var(--font-mono); /* es un control, como tabs/sidebar, no prosa */
-/* hover: */
-background: var(--color-accent-dim); /* token ya definido en la paleta
-                                         para "fondos tintados de estado
-                                         activo/hover" — no se inventa una
-                                         opacidad nueva */
-```
-
-Ícono `Download` de `lucide-react`. No se extrae como componente nuevo
-todavía (uso único) — se restylea el `<a>` existente in place. Queda
-marcado como candidato a un futuro componente `Button`/`PillLink`... — mejor
-dicho, `Button` a secas, dado que acá no hay píldoras — si aparece una
-segunda acción primaria (ej. en Projects, cuando tenga contenido real).
+1. **Eyebrow + heading** (`space-y-1`, gap apretado — un solo bloque de
+   identidad, igual que el header cluster de `ExperienceCard`).
+2. **Tagline** — una línea corta (`text-lg text-secondary`, `max-w-md` para
+   que no estire de punta a punta en desktop) que le da presencia a la
+   sección: sin ella, solo quedan íconos + un botón, que en el scroll
+   wrapper de 95vh se siente vacío. String en `messages.contact.tagline`,
+   no hardcodeado.
+3. **Contacto directo + CV**, agrupados juntos (`gap-6`) porque ambos son
+   _acciones_, a diferencia del tagline que es lectura:
+   - Íconos de Email + LinkedIn + GitHub (`SocialLink`, `flex flex-wrap
+justify-center`), sin cambios de estilo respecto a lo ya definido.
+   - Botón de descarga de CV: `LinkButton` variant `secondary` (ver
+     componente en la tabla de abajo — mismo control que usan las acciones
+     de `ProjectCard`), ícono `Download` de `lucide-react`.
 
 ## Firma visual: chrome honesto de editor
 
@@ -546,6 +566,8 @@ del diseño se mantiene deliberadamente tranquilo.
 | `TechBadge`             | Nombre de tecnología en `--color-accent`, `font-mono` — no es un "chip" con fondo, es texto resaltado                                     |
 | `ProjectCard`           | Card de proyecto: media opcional, título, descripción, tech tags, acciones (ver Projects)                                                 |
 | `LinkButton`            | `<a>` con variantes `primary`/`secondary` (mismos tokens que `HeroCtaButton`); usado en Projects y en el botón de descargar CV de Contact |
+| `StatusChip`            | Wrapper de badge reusado por disponibilidad, ubicación y hora local en Home                                                               |
+| `LocalTimeBadge`        | Client component: `StatusChip` con la hora en vivo de Buenos Aires (`setInterval`, ver Home)                                              |
 | `Avatar/Badge` circular | Esquina inferior izquierda, fuera del panel, logo/inicial — **sin implementar todavía**                                                   |
 
 ## Íconos (lucide-react)

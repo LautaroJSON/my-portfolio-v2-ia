@@ -4,10 +4,6 @@ Traduce `cv.md` + los requerimientos funcionales a un modelo de datos tipado
 y a historias de usuario por sección. Este es el archivo que reemplaza a la
 "HU + Figma" tradicional para las secciones de contenido.
 
-> ⚠️ **Dato faltante:** `cv.md` no incluye un link de GitHub, solo LinkedIn
-> y el portfolio actual. Confirmar el usuario de GitHub antes de implementar
-> `SocialLink` en Contacto, o dejarlo condicional (no renderizar si es `null`).
-
 ---
 
 ## Interfaces de dominio (`/src/interfaces`)
@@ -267,12 +263,18 @@ IProject[]`), separado por idioma igual que `experience.ts` — el mismo
 > Como visitante quiero poder escribirle por mail, descargar su CV, o ir a
 > su LinkedIn/GitHub, para contactarlo o profundizar en su perfil.
 
+- Contenido **centrado** (a diferencia de Home/Experience/Projects, que
+  fluyen a la izquierda) — es la sección de cierre, funciona como CTA final
+  más que como contenido a leer.
 - Mostrar:
+  - Eyebrow + heading, seguidos de una **leyenda corta** (`tagline`, en
+    `messages/{locale}.json`) — evita que la sección se sienta vacía con
+    solo íconos y un botón.
   - Email (`fernandez.n.lautaro@gmail.com`) — con ícono `Mail`, link `mailto:`
+  - LinkedIn (`https://www.linkedin.com/in/lautaro-fernandez-json/`) — ícono `Linkedin`
+  - GitHub (`https://github.com/LautaroJSON`) — ícono `Github`
   - Botón/link de descarga de CV → `/cv-lautaro-fernandez.pdf` (agregar el
     PDF real a `public/`, no generarlo desde el `.md`)
-  - LinkedIn (`https://www.linkedin.com/in/lautaro-fernandez-json/`) — ícono `Linkedin`
-  - GitHub — **pendiente de confirmar URL** (ver nota al inicio del archivo)
 - No mostrar teléfono, DNI, dirección ni fecha de nacimiento (dato sensible,
   ver `AGENTS.md`).
 
@@ -301,15 +303,16 @@ export const contactInfo: IContactInfo = {
     {
       platform: 'github',
       label: 'GitHub',
-      url: 'PENDIENTE — completar antes de implementar este ítem',
+      url: 'https://github.com/LautaroJSON',
       icon: 'Github',
     },
   ],
 };
 ```
 
-- Si `github.url` sigue como placeholder al momento de implementar, **no
-  renderizar ese `SocialLink`** (filtrar el array, no mostrar un link roto).
+- Si algún `SocialLink` tuviera `url` vacía, `ContactSection` lo filtra del
+  render (no renderizar un link roto) — el patrón queda ahí por si se
+  agrega una red social sin URL confirmada en el futuro.
 - `icon` mapea 1:1 al nombre del componente de `lucide-react`
   (`import { Mail, Linkedin, Github, Download } from "lucide-react"`).
 
@@ -319,6 +322,7 @@ export const contactInfo: IContactInfo = {
 {
   "contact": {
     "heading": "Get in touch", // en — "Contacto" / heading equivalente en es
+    "tagline": "Let's build something together — I usually reply within a day.", // es: "Construyamos algo juntos — suelo responder en el día."
     "downloadCv": "Download CV", // es: "Descargar CV"
     "downloadCvAria": "Download Lautaro's CV as PDF" // accesibilidad, ver nota abajo
   }
@@ -330,15 +334,11 @@ export const contactInfo: IContactInfo = {
 - Reusa `SocialLink` (ya listado en `AGENTS.md` bajo `/components/ui`) para
   cada ítem de `contactInfo.socialLinks`, iterando el array — no un
   componente hardcodeado por red social.
-- El botón de descarga de CV es un `<a>` con `download` attribute apuntando
-  a `cvDownloadUrl`, con ícono `Download` de lucide-react.
+- El botón de descarga de CV es un `LinkButton` (variant `secondary`) con
+  `download` apuntando a `cvDownloadUrl`, con ícono `Download` de
+  lucide-react.
 - Accesibilidad: cada `SocialLink`/botón necesita `aria-label` descriptivo
   (no solo el ícono sin texto), ej. `aria-label="LinkedIn — Lautaro Fernandez"`.
 - Sigue el patrón visual de `design-system.md`: dentro del `EditorPanel`
-  existente, no un layout nuevo aparte.
-
----
-
-## Pendientes / a confirmar con el autor
-
-- [ ] URL de GitHub para `ISocialLink`
+  existente, no un layout nuevo aparte — pero centrado (`flex flex-col
+items-center text-center`), a diferencia de las demás secciones.

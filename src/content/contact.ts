@@ -17,12 +17,9 @@ export const contactInfo: IContactInfo = {
       icon: 'Linkedin',
     },
     {
-      // TODO: falta confirmar la URL de GitHub (ver docs/content-model.md,
-      // sección "Pendientes"). Mientras url quede vacía, ContactSection
-      // filtra este ítem del render.
       platform: 'github',
       label: 'GitHub',
-      url: '',
+      url: 'https://github.com/LautaroJSON',
       icon: 'Github',
     },
   ],
