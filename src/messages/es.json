@@ -1,4 +1,11 @@
 {
+  "metadata": {
+    "title": "Lautaro Fernandez — Desarrollador Fullstack",
+    "description": "Lautaro Fernandez, Desarrollador Web Fullstack Senior. Construye productos con React, Next.js y TypeScript, integrando agentes de IA a su flujo de trabajo.",
+    "ogImageAlt": "Lautaro Fernandez — Desarrollador Fullstack, tarjeta de portfolio estilo terminal",
+    "ogRole": "Desarrollador Fullstack Senior",
+    "ogStack": "React · Next.js · TypeScript · Agentes de IA"
+  },
   "nav": {
     "home": "Inicio",
     "experience": "Experiencia",
