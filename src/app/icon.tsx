@@ -13,13 +13,14 @@ const Icon = () => {
         width: '100%',
         height: '100%',
         backgroundColor: '#050608',
-        color: '#f5a623',
+        color: '#fdfdfc',
         fontFamily: 'monospace',
-        fontSize: 18,
-        fontWeight: 700,
+        fontSize: 20,
+        fontWeight: 800,
+        border: '1px solid #fdfdfc',
       }}
     >
-      LF
+      L.
     </div>,
     { ...size }
   );
