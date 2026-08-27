@@ -30,9 +30,15 @@ export const ExperienceSection = async () => {
         </h2>
       </div>
 
-      {experiences.map((experience) => (
-        <ExperienceCard key={experience.role} experience={experience} />
-      ))}
+      <div>
+        {experiences.map((experience, index) => (
+          <ExperienceCard
+            key={experience.role}
+            experience={experience}
+            isLast={index === experiences.length - 1}
+          />
+        ))}
+      </div>
     </section>
   );
 };

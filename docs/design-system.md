@@ -31,7 +31,7 @@ Paleta nombrada (valores base; los tokens CSS reales viven en `@theme` de
 ```css
 --void: #050608; /* fondo detrás de la foto, overlay de contraste */
 --graphite: #0b0c0f; /* chrome sólido: sidebar, tabs, texto sobre ámbar */
---bone: #f2f0ea; /* texto primario — blanco cálido, NO #ffffff puro */
+--bone: #f2f0ea; /* blanco cálido, NO #ffffff puro — base de texto secundario/muted y bordes */
 --amber: #f5a623; /* el único acento — "fósforo" */
 ```
 
@@ -50,7 +50,7 @@ Tokens CSS (`@theme` en `globals.css`), derivados de esos 4 valores:
 --color-border-subtle: rgba(242, 240, 234, 0.08);
 --color-border-strong: rgba(242, 240, 234, 0.16);
 
---color-text-primary: #f2f0ea; /* bone, no blanco puro */
+--color-text-primary: #c6c6c6; /* gris apagado, ajustado a mano — ya no deriva de --bone como el resto de los textos */
 --color-text-secondary: rgba(242, 240, 234, 0.6);
 --color-text-muted: rgba(242, 240, 234, 0.35);
 
@@ -70,9 +70,14 @@ Reglas:
   antes usaba un overlay gris genérico (`rgba(255,255,255,0.06)`) ahora usa
   `--color-accent-dim` — el acento hace ese trabajo también, no solo resalta
   texto.
-- El texto primario **no es blanco puro** — es `#f2f0ea` (bone), un blanco
-  cálido que evita el contraste duro típico de "dark mode gris + blanco
-  #fff" y ata todo el sistema tonal a la misma temperatura de color.
+- El texto primario **no es blanco puro** — es `#c6c6c6`, un gris apagado
+  ajustado a mano por el autor para bajar el contraste duro contra el
+  fondo oscuro (evita el "dark mode gris + blanco `#fff`" que cansa la
+  vista en lecturas largas). A diferencia de `--color-text-secondary`,
+  `--color-text-muted` y los `--color-border-*` — que siguen derivando de
+  `--bone` vía `rgba(242, 240, 234, *)` —, `--color-text-primary` ya **no**
+  comparte esa temperatura cálida: es una excepción deliberada del texto
+  de mayor énfasis, no un desvío de consistencia sin querer.
 - Tailwind v4: estos tokens se declaran en `@theme` dentro de
   `src/app/[locale]/globals.css` — Tailwind genera las utilidades
   (`bg-panel-bg`, `text-accent`, etc.) automáticamente. No hay
@@ -217,8 +222,8 @@ import backgroundMountain from '../../../public/background-mountain.png';
 - El `<div className="bg-void/45 fixed inset-0 -z-10" />` inmediatamente
   después es el overlay de contraste: mismo `--color-void` que el resto de
   la paleta (no un negro genérico), al 45% de opacidad, para que el texto
-  `--color-bone` sobre el panel de glass siga siendo legible sin apagar la
-  foto por completo.
+  `--color-text-primary` sobre el panel de glass siga siendo legible sin
+  apagar la foto por completo.
 
 ## Comportamiento de navegación y layout
 
@@ -414,37 +419,50 @@ text-text-secondary rounded-lg border px-2.5 py-1 font-mono text-xs`),
 
 ### Experience (`ExperienceCard`)
 
-Reemplaza el espaciado flat por 4 niveles jerárquicos:
+Línea de tiempo vertical real, no un hairline decorativo. Cada card es una
+fila `flex` de 2 columnas: marcador (círculo + línea conectora) y
+contenido.
 
-1. **Header cluster** (`space-y-1`, gap apretado — es un solo bloque de
-   identidad):
-   - Rol + empresa: `h3`, `font-sans font-bold`, `--color-text-primary`.
-   - Debajo, **una sola línea combinada** de ubicación + fechas + duración
-     (antes eran 2 `<p>` separados): `"Buenos Aires, Argentina · May 2025 –
-Present · 1 yr 3 mos"`. Tratamiento: `font-mono text-sm`,
-     `--color-text-secondary` — es dato/metadata, no prosa, así que sigue
-     el mismo criterio mono que fechas/tags en el resto del sistema.
-     `flex-wrap` obligatorio para no romper en mobile.
-2. **Descripción** — gap suelto respecto al header (nuevo grupo: la
-   narrativa). `font-sans`, keywords técnicas en `--color-accent
-font-semibold` si aplica (mismo criterio que Home).
-3. **Proyectos** — gap suelto respecto a la descripción (nuevo grupo: la
-   evidencia concreta).
-4. **Tech badges** — gap suelto respecto a proyectos (nuevo grupo: tags al
-   final). Sin cambios sobre `TechBadge` ya definido (`font-mono`,
-   `--color-accent`, `flex-wrap`).
+**Marcador**:
 
-Entre cards: mantener el espaciado actual (ya cumple la regla de 2x, no
-cambia).
+- Círculo: anillo fino `h-3 w-3 rounded-full border-2 border-accent`, sin
+  relleno — es el único lugar donde el acento ámbar vive fuera de
+  texto/badges, marcando cada hito como un punto real de la carrera (no
+  decorativo).
+- Línea conectora: `w-px flex-1 bg-border-subtle`, **dentro** de la
+  columna marcador de cada hito (no un overlay absoluto aparte). Al vivir
+  en una columna `flex-col` cuya altura la define la columna de contenido
+  (más alta), la línea rellena hasta el borde inferior de ese hito; como
+  el siguiente `<article>` arranca inmediatamente después sin gap externo
+  (el espaciado lo da el `pb-10` interno del contenido, no un `space-y-*`
+  entre cards), la línea se ve continua entre círculos. El último hito no
+  la dibuja (`isLast`).
 
-**Hairline lateral**: `border-inline-start` sutil en cada card, con
-`--color-border-subtle` (token ya existente, no color nuevo) — ayuda al
-scan-rhythm en una lista de 3 cards densas dentro del scroll wrapper.
+**Contenido** (`space-y-4`, 4 grupos con la regla de 2x entre ellos):
 
-> Nota: el orden de la información sigue siendo el definido en
-> `content-model.md` (rol → ubicación/fechas → descripción → proyectos →
-> tecnologías) — este cambio es de **agrupación visual**, no de orden de
-> datos.
+1. **Rango de años** (`2022 – 2024`, o `2024 – {t('present')}`) —
+   `font-mono text-sm`, `--color-text-secondary`. Solo año, no mes+año —
+   es el ancla visual del hito en la timeline, no necesita precisión de
+   mes ahí (esa precisión vive en la duración, punto 2).
+2. **Header cluster** (`space-y-1`, gap apretado — un solo bloque de
+   identidad): rol (`h3`, `font-sans font-bold`, `--color-text-primary`),
+   empresa debajo (`text-sm`, `--color-text-secondary`), y ubicación +
+   duración entre paréntesis debajo de eso (`"Buenos Aires, Argentina (1
+yr 3 mos)"`, `font-mono text-xs`, `--color-text-muted`) — tres líneas
+   separadas, no combinadas en una sola como antes.
+3. **Descripción** — sin cambios (`font-sans`, `--color-text-primary`).
+4. **Proyectos** (si existen) — sin cambios respecto a la versión previa.
+5. **Tecnologías como literal de array de código** (`[React, TypeScript,
+NestJS]`) en vez de `TechBadge`: `font-mono text-sm`, corchetes y comas
+   en `--color-text-muted` (puntuación), nombres de tecnología en
+   `--color-accent` (identificadores) — mismo criterio de sintaxis
+   resaltada que el resto del "chrome" de editor del sitio. `TechBadge`
+   sigue existiendo para Home/Projects, no se tocó ese componente.
+
+> Nota: el orden de la información sigue siendo el de `content-model.md`
+> (rol → ubicación/fechas → descripción → proyectos → tecnologías) — este
+> cambio es de **presentación** (timeline + array literal), no de orden
+> de datos.
 
 ### Projects (`ProjectCard`)
 
