@@ -4,7 +4,7 @@ import { profile } from '@/content/profile';
 import { contactInfo } from '@/content/contact';
 import { routing } from '@/i18n/routing';
 
-export const SITE_URL = 'https://my-portfolio-v2-ia.vercel.app';
+export const SITE_URL = 'https://www.lautarojson.dev';
 
 interface IBuildMetadataParams {
   locale: string;
