@@ -52,6 +52,7 @@
   "contact": {
     "heading": "Contacto",
     "tagline": "Abierto a posiciones Full Stack y Frontend. La forma más rápida de contactarme es por email o LinkedIn.",
+    "timezone": "Basado en Buenos Aires, Argentina (UTC−3)",
     "downloadCv": "Descargar CV",
     "downloadCvAria": "Descargar el CV de Lautaro en PDF"
   },

@@ -1,4 +1,4 @@
-import { Download } from 'lucide-react';
+import { Clock, Download } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { SocialLink } from '@/components/ui/SocialLink';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
@@ -29,7 +29,13 @@ export const ContactSection = async () => {
         </h1>
       </div>
 
-      <p className="text-text-secondary max-w-md text-lg">{t('tagline')}</p>
+      <div className="space-y-2">
+        <p className="text-text-secondary max-w-md text-lg">{t('tagline')}</p>
+        <p className="text-text-muted flex items-center justify-center gap-2 font-mono text-sm">
+          <Clock size={14} strokeWidth={1.5} aria-hidden="true" />
+          {t('timezone')}
+        </p>
+      </div>
 
       <div className="flex flex-col items-center gap-6">
         <div className="flex flex-wrap items-center justify-center gap-6">
