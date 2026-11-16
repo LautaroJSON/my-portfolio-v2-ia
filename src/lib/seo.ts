@@ -97,7 +97,6 @@ interface IBuildPersonJsonLdParams {
 export const buildPersonJsonLd = async ({
   locale,
 }: IBuildPersonJsonLdParams) => {
-  const t = await getTranslations({ locale, namespace: 'metadata' });
   const sameAs = contactInfo.socialLinks
     .filter((link) => link.platform !== 'email' && link.url)
     .map((link) => link.url);
@@ -106,7 +105,7 @@ export const buildPersonJsonLd = async ({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: profile.name,
-    jobTitle: t('jobTitle'),
+    jobTitle: profile.jobTitle,
     url: buildSectionUrl(locale, 'home'),
     email: `mailto:${contactInfo.email}`,
     address: {
