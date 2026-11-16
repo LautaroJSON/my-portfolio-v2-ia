@@ -70,6 +70,16 @@ export const ProjectCard = async ({ project }: IProjectCardProps) => {
             <GithubIcon size={14} />
             {t('code')}
           </LinkButton>
+          {project.backendRepoUrl && (
+            <LinkButton
+              href={project.backendRepoUrl}
+              variant="secondary"
+              ariaLabel={t('backendCodeAria', { name: project.name })}
+            >
+              <GithubIcon size={14} />
+              {t('backendCode')}
+            </LinkButton>
+          )}
         </div>
       </div>
     </article>

@@ -33,14 +33,15 @@
     "tabsAria": "Archivos abiertos"
   },
   "home": {
-    "availability": "Disponible para trabajo remoto",
+    "role": "Desarrollador Full Stack",
+    "availability": "Disponible para trabajo remoto a nivel mundial / híbrido en Buenos Aires",
     "localTimeAria": "Hora local actual de Lautaro en Buenos Aires",
     "ctaPrimary": "Ver Experiencia",
     "ctaPrimaryAria": "Ver la experiencia laboral de Lautaro",
     "ctaSecondary": "Contactar",
     "ctaSecondaryAria": "Ir a la sección de contacto",
-    "yearsExperience": "+4 años de experiencia",
-    "focusArea": "Fullstack & Desarrollo con IA",
+    "yearsExperience": "+5 años de experiencia",
+    "focusArea": "Full Stack y desarrollo asistido por IA",
     "bilingual": "Bilingüe (ES / EN B2)",
     "aboutHeading": "Un poco sobre mí",
     "aboutNote": "Aprender la sintaxis de un lenguaje de programación toma un fin de semana; igualmente, mi experiencia principal es con los siguientes lenguajes y frameworks:"
@@ -60,6 +61,8 @@
     "demo": "Demo en vivo",
     "demoAria": "Ver la demo en vivo de {name}",
     "code": "Código",
-    "codeAria": "Ver el código fuente de {name} en GitHub"
+    "codeAria": "Ver el código fuente de {name} en GitHub",
+    "backendCode": "Backend",
+    "backendCodeAria": "Ver el código fuente del backend de {name} en GitHub"
   }
 }

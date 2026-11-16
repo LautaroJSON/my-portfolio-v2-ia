@@ -33,14 +33,15 @@
     "tabsAria": "Open files"
   },
   "home": {
-    "availability": "Available for remote work",
+    "role": "Full Stack Engineer",
+    "availability": "Available for remote work worldwide / hybrid in Buenos Aires",
     "localTimeAria": "Lautaro's current local time in Buenos Aires",
     "ctaPrimary": "View Experience",
     "ctaPrimaryAria": "View Lautaro's work experience",
     "ctaSecondary": "Get in Touch",
     "ctaSecondaryAria": "Go to the contact section",
-    "yearsExperience": "4+ yrs experience",
-    "focusArea": "Fullstack & AI-Assisted Dev",
+    "yearsExperience": "5+ yrs experience",
+    "focusArea": "Full Stack & AI-Assisted Dev",
     "bilingual": "Bilingual (ES / EN B2)",
     "aboutHeading": "A bit about me",
     "aboutNote": "Learning a new language's syntax takes about a weekend — that said, my main hands-on experience is with the following languages and frameworks:"
@@ -60,6 +61,8 @@
     "demo": "Live demo",
     "demoAria": "View live demo of {name}",
     "code": "Code",
-    "codeAria": "View {name} source code on GitHub"
+    "codeAria": "View {name} source code on GitHub",
+    "backendCode": "Backend",
+    "backendCodeAria": "View {name} backend source code on GitHub"
   }
 }
