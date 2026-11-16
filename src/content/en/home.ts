@@ -1,8 +1,8 @@
 import type { ITextFragment } from '@/interfaces/text-fragment.interface';
 
 export const homeContentEn: ITextFragment[] = [
-  { text: '4+ years of experience as a ' },
-  { text: 'Fullstack', accent: true },
+  { text: '5+ years of experience as a ' },
+  { text: 'Full Stack', accent: true },
   { text: ' Developer focused on Frontend, working with ' },
   { text: 'React', accent: true },
   { text: ', ' },

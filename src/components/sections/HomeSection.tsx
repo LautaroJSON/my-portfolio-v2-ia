@@ -70,7 +70,7 @@ export const HomeSection = async () => {
             {profile.name}
           </h1>
           <p className="text-text-secondary font-sans text-lg font-medium md:text-xl">
-            {profile.role}
+            {t('role')}
           </p>
         </div>
       </div>

@@ -1,10 +1,13 @@
 import type { ITextFragment } from '@/interfaces/text-fragment.interface';
 
 export const aboutContentEn: ITextFragment[] = [
-  { text: 'Graduated from Universidad Tecnológica Nacional (UTN FRA) as a ' },
-  { text: 'Technical Degree in Programming', accent: true },
+  { text: 'Graduated as a ' },
   {
-    text: ', where I took my first steps into development at 18 with low-level languages like ',
+    text: 'Higher Technician in Programming (Técnico Superior en Programación)',
+    accent: true,
+  },
+  {
+    text: ' from Universidad Tecnológica Nacional (UTN), 2018–2020, where I took my first steps into development at 18 with low-level languages like ',
   },
   { text: 'C', accent: true },
   { text: ', later moving to ' },

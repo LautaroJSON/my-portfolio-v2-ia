@@ -1,10 +1,10 @@
 import type { ITextFragment } from '@/interfaces/text-fragment.interface';
 
 export const aboutContentEs: ITextFragment[] = [
-  { text: 'Titulado de la Universidad Tecnológica Nacional (UTN FRA) como ' },
+  { text: 'Me recibí de ' },
   { text: 'Técnico Superior en Programación', accent: true },
   {
-    text: ', donde di mis primeros pasos en el mundo del desarrollo a los 18 años con lenguajes de bajo nivel como ',
+    text: ' en la Universidad Tecnológica Nacional (UTN), 2018–2020, donde di mis primeros pasos en el mundo del desarrollo a los 18 años con lenguajes de bajo nivel como ',
   },
   { text: 'C', accent: true },
   { text: ', pasando luego a ' },
