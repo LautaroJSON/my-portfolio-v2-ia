@@ -36,7 +36,7 @@ export const HomeSection = async () => {
   const credentials = [
     t('yearsExperience'),
     t('focusArea'),
-    t('bilingual'),
+    t('languages'),
   ].join(' · ');
 
   return (
