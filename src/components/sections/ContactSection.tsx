@@ -1,12 +1,15 @@
 import { Download } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { SocialLink } from '@/components/ui/SocialLink';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { contactInfo } from '@/content/contact';
 
 export const ContactSection = async () => {
+  const locale = await getLocale();
   const t = await getTranslations('contact');
+  const cvDownload =
+    locale === 'es' ? contactInfo.cvDownloads.es : contactInfo.cvDownloads.en;
   const validSocialLinks = contactInfo.socialLinks.filter(
     (socialLink) => socialLink.url
   );
@@ -36,9 +39,9 @@ export const ContactSection = async () => {
         </div>
 
         <LinkButton
-          href={contactInfo.cvDownloadUrl}
+          href={cvDownload.url}
           variant="secondary"
-          download
+          download={cvDownload.fileName}
           ariaLabel={t('downloadCvAria')}
         >
           <Download size={20} strokeWidth={1.5} />

@@ -61,7 +61,12 @@ interface ISocialLink {
 
 interface IContactInfo {
   email: string;
-  cvDownloadUrl: string; // /cv-lautaro-fernandez.pdf
+  cvDownloads: Record<'en' | 'es', ICvDownload>; // un PDF por idioma
+}
+
+interface ICvDownload {
+  url: string; // /cv-lautaro-fernandez-{en|es}.pdf
+  fileName: string; // Lautaro-Fernandez-CV-{EN|ES}.pdf (atributo download)
   socialLinks: ISocialLink[];
 }
 
@@ -286,7 +291,16 @@ labels de UI que los acompañan (esos van en `messages/{locale}.json`, no acá).
 ```ts
 export const contactInfo: IContactInfo = {
   email: 'fernandez.n.lautaro@gmail.com',
-  cvDownloadUrl: '/cv-lautaro-fernandez.pdf',
+  cvDownloads: {
+    en: {
+      url: '/cv-lautaro-fernandez-en.pdf',
+      fileName: 'Lautaro-Fernandez-CV-EN.pdf',
+    },
+    es: {
+      url: '/cv-lautaro-fernandez-es.pdf',
+      fileName: 'Lautaro-Fernandez-CV-ES.pdf',
+    },
+  },
   socialLinks: [
     {
       platform: 'email',
@@ -335,7 +349,8 @@ export const contactInfo: IContactInfo = {
   cada ítem de `contactInfo.socialLinks`, iterando el array — no un
   componente hardcodeado por red social.
 - El botón de descarga de CV es un `LinkButton` (variant `secondary`) con
-  `download` apuntando a `cvDownloadUrl`, con ícono `Download` de
+  `href` = `cvDownloads[locale].url` y `download` = `cvDownloads[locale].fileName`
+  (un PDF por idioma), con ícono `Download` de
   lucide-react.
 - Accesibilidad: cada `SocialLink`/botón necesita `aria-label` descriptivo
   (no solo el ícono sin texto), ej. `aria-label="LinkedIn — Lautaro Fernandez"`.

@@ -8,7 +8,7 @@ interface ILinkButtonProps {
   href: string;
   variant: ButtonVariant;
   ariaLabel: string;
-  download?: boolean;
+  download?: boolean | string; // string = suggested file name
   children: ReactNode;
 }
 

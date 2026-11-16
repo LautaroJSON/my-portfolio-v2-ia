@@ -2,7 +2,16 @@ import type { IContactInfo } from '@/interfaces/contact.interface';
 
 export const contactInfo: IContactInfo = {
   email: 'fernandez.n.lautaro@gmail.com',
-  cvDownloadUrl: '/cv-lautaro-fernandez.pdf',
+  cvDownloads: {
+    en: {
+      url: '/cv-lautaro-fernandez-en.pdf',
+      fileName: 'Lautaro-Fernandez-CV-EN.pdf',
+    },
+    es: {
+      url: '/cv-lautaro-fernandez-es.pdf',
+      fileName: 'Lautaro-Fernandez-CV-ES.pdf',
+    },
+  },
   socialLinks: [
     {
       platform: 'email',
