@@ -6,7 +6,7 @@ import type { SectionId } from '@/interfaces/navigation.interface';
 
 interface IStatusBarProps {
   activeSection: SectionId;
-  lineCount: number;
+  lineCount: number | null; // null until measured on the client
   className?: string;
 }
 
@@ -24,7 +24,7 @@ export const StatusBar = ({
     >
       <span>{activeItem?.fileName}</span>
       <span className="flex items-center gap-3">
-        <span>{lineCount} lines</span>
+        {lineCount !== null && <span>{lineCount} lines</span>}
         <span>UTF-8</span>
         <span>{locale.toUpperCase()}</span>
       </span>

@@ -17,7 +17,9 @@ interface IEditorPanelProps {
 export const EditorPanel = ({ children, activeSection }: IEditorPanelProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [lineCount, setLineCount] = useState(0);
+  // `null` until the content is measured on the client: the server-rendered
+  // HTML must not claim a line count it cannot know.
+  const [lineCount, setLineCount] = useState<number | null>(null);
 
   // Next.js only resets the window scroll on navigation; the editor content
   // scrolls inside its own container, so it has to be reset by hand.
@@ -50,7 +52,7 @@ export const EditorPanel = ({ children, activeSection }: IEditorPanelProps) => {
         <div className="border-border-subtle flex min-h-0 flex-col overflow-hidden rounded-lg border">
           <TabStrip activeSection={activeSection} />
           <div ref={scrollRef} className="flex min-h-0 flex-1 overflow-y-auto">
-            <LineNumberGutter lineCount={lineCount} />
+            <LineNumberGutter lineCount={lineCount ?? 0} />
             <main
               ref={contentRef}
               className="border-border-subtle text-text-primary flex-1 border-l p-6 text-lg leading-relaxed"
