@@ -57,7 +57,6 @@
   },
   "projects": {
     "comingSoon": "Próximamente.",
-    "noPreview": "// sin vista previa",
     "demo": "Demo en vivo",
     "demoAria": "Ver la demo en vivo de {name}",
     "code": "Código",

@@ -489,10 +489,12 @@ NestJS]`) en vez de `TechBadge`: `font-mono text-sm`, corchetes y comas
     columna de info (`align-items: stretch` por defecto en flex), info a
     la derecha ocupando el resto (`flex-1`). Mismo componente, no hay un
     `ProjectCardHorizontal` aparte.
-  1. **Media** (`object-cover`) — opcional. Sin imagen, el bloque **no
-     colapsa**: placeholder con ícono (`Code2` de `lucide-react`) +
-     `// no preview` en mono, sobre `--color-sidebar-bg`, en ambas
-     orientaciones.
+  1. **Media** (`object-cover`) — opcional. Capturas en
+     `public/projects/{id}.png`, **1200×675 px (16:9)**. Si el proyecto no
+     tiene `image`, o el archivo todavía no existe en `/public` (se verifica
+     en build con `publicAssetExists`), el bloque de media **no se
+     renderiza**: la card queda solo con la info, sin recuadro vacío ni
+     placeholder.
   2. **Título** — sans, bold, nombre propio del proyecto (no se traduce).
   3. **Descripción breve** — sans, `text-secondary`, `flex-1` (empuja los
      botones al pie de la card aunque la descripción sea corta, para

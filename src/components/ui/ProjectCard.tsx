@@ -1,9 +1,10 @@
 import Image from 'next/image';
-import { Code2, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { TechBadge } from '@/components/ui/TechBadge';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { GithubIcon } from '@/components/ui/BrandIcons';
+import { publicAssetExists } from '@/lib/public-asset';
 import type { IProject } from '@/interfaces/project.interface';
 
 interface IProjectCardProps {
@@ -12,27 +13,24 @@ interface IProjectCardProps {
 
 export const ProjectCard = async ({ project }: IProjectCardProps) => {
   const t = await getTranslations('projects');
+  // Without an image (or before its file is added to /public) the card drops
+  // the media block entirely instead of showing an empty frame.
+  const image =
+    project.image && publicAssetExists(project.image) ? project.image : null;
 
   return (
     <article className="border-border-subtle flex flex-col overflow-hidden rounded-lg border landscape:flex-row">
-      <div className="bg-sidebar-bg border-border-subtle relative aspect-video border-b landscape:aspect-auto landscape:w-64 landscape:shrink-0 landscape:border-e landscape:border-b-0">
-        {project.image ? (
+      {image && (
+        <div className="bg-sidebar-bg border-border-subtle relative aspect-video border-b landscape:aspect-auto landscape:w-64 landscape:shrink-0 landscape:border-e landscape:border-b-0">
           <Image
-            src={project.image}
+            src={image}
             alt=""
             fill
             sizes="(orientation: landscape) 256px, 100vw"
             className="object-cover"
           />
-        ) : (
-          <div className="text-text-muted flex h-full flex-col items-center justify-center gap-2">
-            <Code2 size={22} strokeWidth={1.5} aria-hidden="true" />
-            <span className="font-mono text-xs tracking-wide">
-              {t('noPreview')}
-            </span>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <h2 className="text-text-primary text-lg font-bold tracking-tight">

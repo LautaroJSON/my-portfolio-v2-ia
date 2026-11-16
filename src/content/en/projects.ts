@@ -9,6 +9,7 @@ export const PROJECTS: IProject[] = [
     name: 'RandomPlay',
     description:
       'Ticket booking system for a fictional cinema chain. Backend: ASP.NET Core 10 API with hexagonal architecture, EF Core and PostgreSQL, JWT authentication with role-based access (RBAC), 5-minute seat holds, all-or-nothing reservations, rate limiting and integration tests with Testcontainers. Frontend: Next.js with SEO-ready public pages, a typed API client generated from OpenAPI, and Playwright end-to-end tests with axe accessibility checks.',
+    image: '/projects/randomplay.png',
     repoUrl: 'https://github.com/LautaroJSON/cinema-system-randomplay-frontend',
     backendRepoUrl:
       'https://github.com/LautaroJSON/cinema-system-randomplay-backend',
@@ -48,6 +49,7 @@ export const PROJECTS: IProject[] = [
     name: 'Calorie Tracker',
     description:
       'Local-first calorie tracker built with React Native and Expo. It runs entirely on the device, with no backend or account: it calculates a daily calorie goal from the user profile, logs food and exercise, and stores everything with AsyncStorage. Android releases are automated with GitHub Actions and EAS.',
+    image: '/projects/calorie-tracker.png',
     repoUrl: 'https://github.com/LautaroJSON/calorie-tracker',
     technologies: [
       'React Native',
@@ -103,6 +105,7 @@ export const PROJECTS: IProject[] = [
     name: 'Interactive Desktop Web Application',
     description:
       'Web app that recreates a desktop operating system in the browser, with a window system to present content. Built with React, TypeScript and Vite.',
+    image: '/projects/pc-web-debut.png',
     repoUrl: 'https://github.com/LautaroJSON/pc-web-debut',
     technologies: ['React', 'TypeScript', 'Vite'],
   },
