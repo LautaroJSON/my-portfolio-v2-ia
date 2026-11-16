@@ -1,15 +1,14 @@
-'use client';
-
 import type { ReactNode } from 'react';
-import { useNavigation } from '@/lib/navigation-context';
+import { Link } from '@/i18n/navigation';
+import { getSectionHref } from '@/lib/navigation';
 import {
   BUTTON_VARIANT_CLASSES,
   type ButtonVariant,
 } from '@/lib/button-variants';
-import type { ISidebarItem } from '@/interfaces/navigation.interface';
+import type { SectionId } from '@/interfaces/navigation.interface';
 
 interface IHeroCtaButtonProps {
-  target: ISidebarItem['id'];
+  target: SectionId;
   variant: ButtonVariant;
   ariaLabel: string;
   children: ReactNode;
@@ -21,16 +20,13 @@ export const HeroCtaButton = ({
   ariaLabel,
   children,
 }: IHeroCtaButtonProps) => {
-  const { select } = useNavigation();
-
   return (
-    <button
-      type="button"
+    <Link
+      href={getSectionHref(target)}
       aria-label={ariaLabel}
-      onClick={() => select(target)}
       className={`focus-visible:outline-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 font-mono text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 ${BUTTON_VARIANT_CLASSES[variant]}`}
     >
       {children}
-    </button>
+    </Link>
   );
 };

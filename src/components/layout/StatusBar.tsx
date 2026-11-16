@@ -2,10 +2,10 @@
 
 import { useLocale } from 'next-intl';
 import { NAV_ITEMS } from '@/lib/navigation';
-import type { ISidebarItem } from '@/interfaces/navigation.interface';
+import type { SectionId } from '@/interfaces/navigation.interface';
 
 interface IStatusBarProps {
-  activeSection: ISidebarItem['id'];
+  activeSection: SectionId;
   lineCount: number;
   className?: string;
 }

@@ -1,26 +1,36 @@
+import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import { PortfolioShell } from '@/components/layout/PortfolioShell';
 import { HomeSection } from '@/components/sections/HomeSection';
-import { ExperienceSection } from '@/components/sections/ExperienceSection';
-import { ProjectsSection } from '@/components/sections/ProjectsSection';
-import { ContactSection } from '@/components/sections/ContactSection';
+import { buildMetadata, buildPersonJsonLd } from '@/lib/seo';
 
 interface IHomePageProps {
   params: Promise<{ locale: string }>;
 }
 
+export const generateMetadata = async ({
+  params,
+}: IHomePageProps): Promise<Metadata> => {
+  const { locale } = await params;
+  return buildMetadata({ locale, section: 'home' });
+};
+
 const HomePage = async ({ params }: IHomePageProps) => {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const sections = {
-    home: <HomeSection />,
-    experience: <ExperienceSection />,
-    projects: <ProjectsSection />,
-    contact: <ContactSection />,
-  };
+  // The Person JSON-LD describes the site owner, so it only ships with the
+  // home page of each locale instead of being repeated on every route.
+  const personJsonLd = await buildPersonJsonLd({ locale });
 
-  return <PortfolioShell sections={sections} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <HomeSection />
+    </>
+  );
 };
 
 export default HomePage;

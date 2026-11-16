@@ -1,24 +1,20 @@
 'use client';
 
-import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { EditorPanel } from '@/components/layout/EditorPanel';
-import { NavigationContext } from '@/lib/navigation-context';
-import type { ISidebarItem } from '@/interfaces/navigation.interface';
+import { usePathname } from '@/i18n/navigation';
+import { getSectionFromPathname } from '@/lib/navigation';
 
 interface IPortfolioShellProps {
-  sections: Record<ISidebarItem['id'], ReactNode>;
+  children: ReactNode;
 }
 
-export const PortfolioShell = ({ sections }: IPortfolioShellProps) => {
-  const [activeSection, setActiveSection] =
-    useState<ISidebarItem['id']>('home');
+// The active section is derived from the URL: every section is its own route
+// (`/[locale]`, `/[locale]/experience`, …), so the server already sends the
+// full HTML of the page and the shell only highlights the matching tab.
+export const PortfolioShell = ({ children }: IPortfolioShellProps) => {
+  const pathname = usePathname();
+  const activeSection = getSectionFromPathname(pathname);
 
-  return (
-    <NavigationContext.Provider value={{ select: setActiveSection }}>
-      <EditorPanel activeSection={activeSection} onSelect={setActiveSection}>
-        {sections[activeSection]}
-      </EditorPanel>
-    </NavigationContext.Provider>
-  );
+  return <EditorPanel activeSection={activeSection}>{children}</EditorPanel>;
 };

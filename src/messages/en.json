@@ -1,16 +1,36 @@
 {
   "metadata": {
-    "title": "Lautaro Fernandez — Fullstack Developer",
-    "description": "Lautaro Fernandez, Senior Fullstack Developer building products with React, Next.js and TypeScript — now integrating AI agents into the workflow.",
-    "ogImageAlt": "Lautaro Fernandez — Fullstack Developer, terminal-style portfolio card",
-    "ogRole": "Senior Fullstack Developer",
-    "ogStack": "React · Next.js · TypeScript · AI Agents"
+    "siteName": "Lautaro Fernandez — Portfolio",
+    "jobTitle": "Full Stack Engineer",
+    "ogImageAlt": "Lautaro Fernandez — Full Stack Engineer, terminal-style portfolio card",
+    "ogRole": "Full Stack Engineer",
+    "ogStack": "TypeScript · React · Next.js · Node.js · NestJS",
+    "pages": {
+      "home": {
+        "title": "Lautaro Fernandez — Full Stack Engineer | React, Next.js, TypeScript",
+        "description": "Full Stack Engineer with 5+ years of experience building web products with React, Next.js, TypeScript and NestJS, with a strong frontend background. Based in Buenos Aires, open to remote work."
+      },
+      "experience": {
+        "title": "Experience — Lautaro Fernandez, Full Stack Engineer",
+        "description": "Work experience of Lautaro Fernandez: Frontend Developer at Emergencias, Frontend Architect at Ovidio IT Consulting (client: La Nación) and independent Full Stack projects with React, Next.js and NestJS."
+      },
+      "projects": {
+        "title": "Projects — Lautaro Fernandez, Full Stack Engineer",
+        "description": "Projects by Lautaro Fernandez: a cinema booking system with ASP.NET Core and Next.js, a notes PWA with NestJS and PostgreSQL, a React Native app and more, with source code on GitHub."
+      },
+      "contact": {
+        "title": "Contact — Lautaro Fernandez, Full Stack Engineer",
+        "description": "Contact Lautaro Fernandez, Full Stack Engineer: email, LinkedIn, GitHub and downloadable CV. Available for remote work worldwide or hybrid in Buenos Aires."
+      }
+    }
   },
   "nav": {
     "home": "Home",
     "experience": "Experience",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "sidebarAria": "Portfolio sections",
+    "tabsAria": "Open files"
   },
   "home": {
     "availability": "Available for remote work",

@@ -1,5 +1,8 @@
+export type SectionId = 'home' | 'experience' | 'projects' | 'contact';
+
 export interface ISidebarItem {
-  id: 'home' | 'experience' | 'projects' | 'contact';
+  id: SectionId;
   labelKey: string;
   fileName: string;
+  href: string;
 }

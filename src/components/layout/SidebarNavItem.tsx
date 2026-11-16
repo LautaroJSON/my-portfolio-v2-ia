@@ -1,21 +1,22 @@
+import { Link } from '@/i18n/navigation';
+
 interface ISidebarNavItemProps {
+  href: string;
   label: string;
   translatedLabel: string;
   isActive: boolean;
-  onClick: () => void;
 }
 
 export const SidebarNavItem = ({
+  href,
   label,
   translatedLabel,
   isActive,
-  onClick,
 }: ISidebarNavItemProps) => {
   return (
     <li>
-      <button
-        type="button"
-        onClick={onClick}
+      <Link
+        href={href}
         aria-current={isActive ? 'page' : undefined}
         aria-label={translatedLabel}
         className={`focus-visible:outline-accent flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left font-mono text-sm transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 ${
@@ -30,7 +31,7 @@ export const SidebarNavItem = ({
         >
           {label}
         </span>
-      </button>
+      </Link>
     </li>
   );
 };

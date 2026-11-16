@@ -1,16 +1,36 @@
 {
   "metadata": {
-    "title": "Lautaro Fernandez — Desarrollador Fullstack",
-    "description": "Lautaro Fernandez, Desarrollador Web Fullstack Senior. Construye productos con React, Next.js y TypeScript, integrando agentes de IA a su flujo de trabajo.",
-    "ogImageAlt": "Lautaro Fernandez — Desarrollador Fullstack, tarjeta de portfolio estilo terminal",
-    "ogRole": "Desarrollador Fullstack Senior",
-    "ogStack": "React · Next.js · TypeScript · Agentes de IA"
+    "siteName": "Lautaro Fernandez — Portfolio",
+    "jobTitle": "Desarrollador Full Stack",
+    "ogImageAlt": "Lautaro Fernandez — Desarrollador Full Stack, tarjeta de portfolio estilo terminal",
+    "ogRole": "Desarrollador Full Stack",
+    "ogStack": "TypeScript · React · Next.js · Node.js · NestJS",
+    "pages": {
+      "home": {
+        "title": "Lautaro Fernandez — Desarrollador Full Stack | React, Next.js, TypeScript",
+        "description": "Desarrollador web Full Stack con más de 5 años de experiencia construyendo productos web con React, Next.js, TypeScript y NestJS. Basado en Buenos Aires, disponible para trabajo remoto."
+      },
+      "experience": {
+        "title": "Experiencia — Lautaro Fernandez, Desarrollador Full Stack",
+        "description": "Experiencia laboral de Lautaro Fernandez: Frontend Developer en Emergencias, Frontend Architect en Ovidio IT Consulting (cliente: La Nación) y proyectos Full Stack independientes con React, Next.js y NestJS."
+      },
+      "projects": {
+        "title": "Proyectos — Lautaro Fernandez, Desarrollador Full Stack",
+        "description": "Proyectos de Lautaro Fernandez: un sistema de reservas de cine con ASP.NET Core y Next.js, una PWA de notas con NestJS y PostgreSQL, una app en React Native y más, con el código en GitHub."
+      },
+      "contact": {
+        "title": "Contacto — Lautaro Fernandez, Desarrollador Full Stack",
+        "description": "Contactá a Lautaro Fernandez, Desarrollador Full Stack: email, LinkedIn, GitHub y CV descargable. Disponible para trabajo remoto a nivel mundial o híbrido en Buenos Aires."
+      }
+    }
   },
   "nav": {
     "home": "Inicio",
     "experience": "Experiencia",
     "projects": "Proyectos",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "sidebarAria": "Secciones del portfolio",
+    "tabsAria": "Archivos abiertos"
   },
   "home": {
     "availability": "Disponible para trabajo remoto",

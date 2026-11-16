@@ -230,16 +230,18 @@ import backgroundMountain from '../../../public/background-mountain.png';
 Estas reglas no se ven en una captura estática, son de comportamiento —
 tienen prioridad sobre cualquier suposición que la IA haga por defecto.
 
-- El click en un ítem de la sidebar (o en un tab, ver "Firma visual") cambia
-  un estado de sección activa (`activeSection`, controlado en
-  `PortfolioShell`, el componente padre que orquesta las secciones).
-- Dentro del `EditorPanel`, **se renderiza solo el componente de la sección
-  activa**; las demás no están montadas en el DOM (`{activeSection === 'home'
-&& <HomeSection />}`, no `display: none` — deben desmontarse, no solo
-  ocultarse visualmente).
-- El estado "activo" de cada `SidebarNavItem`/tab se deriva directamente de
-  `activeSection === item.id` — no hace falta `IntersectionObserver` ni
-  detectar scroll, porque no hay scroll de página que trackear.
+- Cada sección es una **ruta real** por locale: `/[locale]` (home),
+  `/[locale]/experience`, `/[locale]/projects`, `/[locale]/contact`. Cada
+  página renderiza su sección como Server Component, así el HTML que sirve el
+  servidor ya contiene el contenido completo (indexable, sin depender de JS).
+- El shell (`Sidebar`, `TabStrip`, `StatusBar`, `EditorPanel`) vive en el
+  layout `app/[locale]/layout.tsx` vía `PortfolioShell`, así que persiste
+  entre rutas y la interfaz de pestañas se ve igual que antes.
+- Sidebar, tabs y CTAs son enlaces (`Link` de `@/i18n/navigation`). La sección
+  activa se deriva de la URL (`usePathname` → `getSectionFromPathname`), no de
+  un `useState`. El enlace activo lleva `aria-current="page"`.
+- Al cambiar de ruta, el contenedor scrolleable del `EditorPanel` vuelve a
+  `scrollTop = 0` (Next.js solo resetea el scroll de la ventana).
 - Los `id` de sección (`#home`, `#experience`, etc.) y el `scrollIntoView`
   quedan obsoletos con este modelo — no deben quedar referenciados en el
   código.
