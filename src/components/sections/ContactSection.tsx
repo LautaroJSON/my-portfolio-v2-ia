@@ -18,12 +18,12 @@ export const ContactSection = async () => {
     >
       <div className="space-y-1">
         <SectionEyebrow label="contact" />
-        <h2
+        <h1
           id="contact-heading"
           className="text-text-primary text-3xl font-bold tracking-tight"
         >
           {t('heading')}
-        </h2>
+        </h1>
       </div>
 
       <p className="text-text-secondary max-w-md text-lg">{t('tagline')}</p>

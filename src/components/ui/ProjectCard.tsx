@@ -35,9 +35,9 @@ export const ProjectCard = async ({ project }: IProjectCardProps) => {
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-4">
-        <h3 className="text-text-primary text-lg font-bold tracking-tight">
+        <h2 className="text-text-primary text-lg font-bold tracking-tight">
           {project.name}
-        </h3>
+        </h2>
 
         <p className="text-text-secondary flex-1 text-sm leading-relaxed">
           {project.description}

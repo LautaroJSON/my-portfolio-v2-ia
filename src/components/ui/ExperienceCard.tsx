@@ -40,9 +40,9 @@ export const ExperienceCard = async ({
         </p>
 
         <div className="space-y-1">
-          <h3 className="text-text-primary text-lg font-bold">
+          <h2 className="text-text-primary text-lg font-bold">
             {experience.role}
-          </h3>
+          </h2>
           <p className="text-text-secondary text-sm">{experience.company}</p>
           <p className="text-text-muted font-mono text-xs">
             {experience.location} ({duration})

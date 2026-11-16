@@ -22,12 +22,12 @@ export const ExperienceSection = async () => {
     >
       <div className="space-y-1">
         <SectionEyebrow label="experience" />
-        <h2
+        <h1
           id="experience-heading"
           className="text-text-primary text-3xl font-bold tracking-tight"
         >
           {t('experience')}
-        </h2>
+        </h1>
       </div>
 
       <div>

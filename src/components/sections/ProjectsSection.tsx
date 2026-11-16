@@ -23,12 +23,12 @@ export const ProjectsSection = async () => {
     >
       <div className="space-y-1">
         <SectionEyebrow label="projects" />
-        <h2
+        <h1
           id="projects-heading"
           className="text-text-primary text-3xl font-bold tracking-tight"
         >
           {tNav('projects')}
-        </h2>
+        </h1>
       </div>
 
       {projects.length > 0 ? (
