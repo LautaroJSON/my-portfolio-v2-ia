@@ -8,7 +8,7 @@ export const EXPERIENCES: IExperience[] = [
     startDate: '2025-04-01',
     endDate: null,
     description:
-      'Proyectos propios, no trabajos para clientes. Me encargo del ciclo completo: requisitos, arquitectura, implementación, testing y despliegue. Frontends con React y Next.js; backends con NestJS, ASP.NET Core y Cloudflare Workers. Trabajo con agentes de IA bajo Spec-Driven Development: defino las especificaciones y la arquitectura, el agente implementa bajo mi dirección y yo reviso y testeo cada cambio.',
+      'Proyectos propios, no trabajos para clientes. Me encargo del ciclo completo: requisitos, arquitectura, implementación, testing y despliegue. Frontends con React y Next.js; backends con NestJS, ASP.NET Core y Cloudflare Workers.',
     projects: [
       {
         name: 'RandomPlay',
