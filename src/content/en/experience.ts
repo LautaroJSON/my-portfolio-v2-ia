@@ -60,7 +60,7 @@ export const EXPERIENCES: IExperience[] = [
     startDate: '2024-12-01',
     endDate: '2025-04-01',
     description:
-      'Designed an Nx monorepo in Next.js to shorten time-to-market, centralizing reusable UI components across products. Automated component scaffolding with custom Nx generators, Tailwind CSS and Storybook, removing manual boilerplate. Integrated an automated Design System that synced Figma assets with Confluence documentation.',
+      'Designed an Nx monorepo in Next.js to shorten time-to-market, centralizing reusable UI components across products. Automated component scaffolding with custom Nx generators, Tailwind CSS and Storybook, removing manual boilerplate. Created a design system in Storybook linked to Figma designs and Confluence documentation as a single source of truth for designers and developers.',
     projects: [],
     technologies: [
       { name: 'Next.js' },

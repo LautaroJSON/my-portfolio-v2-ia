@@ -60,7 +60,7 @@ export const EXPERIENCES: IExperience[] = [
     startDate: '2024-12-01',
     endDate: '2025-04-01',
     description:
-      'Diseñé un monorepo Nx en Next.js para acortar el time-to-market, centralizando componentes UI reutilizables entre productos. Automaticé la creación de componentes con generadores propios de Nx, Tailwind CSS y Storybook, eliminando el boilerplate manual. Integré un Design System automatizado que sincronizaba los assets de Figma con la documentación en Confluence.',
+      'Diseñé un monorepo Nx en Next.js para acortar el time-to-market, centralizando componentes UI reutilizables entre productos. Automaticé la creación de componentes con generadores propios de Nx, Tailwind CSS y Storybook, eliminando el boilerplate manual. Creé un design system en Storybook vinculado a los diseños de Figma y a la documentación en Confluence, como fuente única de verdad para diseñadores y desarrolladores.',
     projects: [],
     technologies: [
       { name: 'Next.js' },
