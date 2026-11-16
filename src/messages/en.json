@@ -39,19 +39,19 @@
     "ctaPrimary": "View Experience",
     "ctaPrimaryAria": "View Lautaro's work experience",
     "ctaSecondary": "Get in Touch",
-    "ctaSecondaryAria": "Go to the contact section",
+    "ctaSecondaryAria": "Go to the contact page",
     "yearsExperience": "5+ yrs experience",
     "focusArea": "Full Stack & AI-Assisted Dev",
     "bilingual": "Bilingual (ES / EN B2)",
     "aboutHeading": "A bit about me",
-    "aboutNote": "Learning a new language's syntax takes about a weekend — that said, my main hands-on experience is with the following languages and frameworks:"
+    "aboutNote": "My main hands-on experience is with the following languages and frameworks:"
   },
   "experience": {
     "present": "Present"
   },
   "contact": {
     "heading": "Get in touch",
-    "tagline": "Let's build something together — I usually reply within a day.",
+    "tagline": "Open to Full Stack and Frontend roles. Email or LinkedIn is the fastest way to reach me.",
     "downloadCv": "Download CV",
     "downloadCvAria": "Download Lautaro's CV as PDF"
   },

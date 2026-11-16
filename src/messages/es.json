@@ -36,22 +36,22 @@
     "role": "Desarrollador Full Stack",
     "availability": "Disponible para trabajo remoto a nivel mundial / híbrido en Buenos Aires",
     "localTimeAria": "Hora local actual de Lautaro en Buenos Aires",
-    "ctaPrimary": "Ver Experiencia",
+    "ctaPrimary": "Ver experiencia",
     "ctaPrimaryAria": "Ver la experiencia laboral de Lautaro",
     "ctaSecondary": "Contactar",
-    "ctaSecondaryAria": "Ir a la sección de contacto",
+    "ctaSecondaryAria": "Ir a la página de contacto",
     "yearsExperience": "+5 años de experiencia",
     "focusArea": "Full Stack y desarrollo asistido por IA",
     "bilingual": "Bilingüe (ES / EN B2)",
     "aboutHeading": "Un poco sobre mí",
-    "aboutNote": "Aprender la sintaxis de un lenguaje de programación toma un fin de semana; igualmente, mi experiencia principal es con los siguientes lenguajes y frameworks:"
+    "aboutNote": "Mi experiencia práctica principal es con los siguientes lenguajes y frameworks:"
   },
   "experience": {
     "present": "Actualidad"
   },
   "contact": {
     "heading": "Contacto",
-    "tagline": "Construyamos algo juntos — suelo responder en el día.",
+    "tagline": "Abierto a posiciones Full Stack y Frontend. La forma más rápida de contactarme es por email o LinkedIn.",
     "downloadCv": "Descargar CV",
     "downloadCvAria": "Descargar el CV de Lautaro en PDF"
   },

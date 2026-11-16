@@ -1,30 +1,34 @@
 import type { ITextFragment } from '@/interfaces/text-fragment.interface';
 
 export const aboutContentEn: ITextFragment[] = [
-  { text: 'Graduated as a ' },
+  { text: 'I graduated as a ' },
   {
     text: 'Higher Technician in Programming (Técnico Superior en Programación)',
     accent: true,
   },
   {
-    text: ' from Universidad Tecnológica Nacional (UTN), 2018–2020, where I took my first steps into development at 18 with low-level languages like ',
+    text: ' from Universidad Tecnológica Nacional (UTN), 2018–2020. I started with ',
   },
   { text: 'C', accent: true },
-  { text: ', later moving to ' },
+  { text: ' and ' },
   { text: 'C#', accent: true },
-  { text: ', which shaped how I think about ' },
+  { text: ', which gave me a solid base in ' },
   { text: 'OOP', accent: true },
-  { text: '. Life led me to my first job as a Frontend developer with ' },
+  {
+    text: ' and software fundamentals. My first role was as a frontend developer with ',
+  },
   { text: 'React', accent: true },
-  { text: ', collaborating with large development teams under ' },
+  { text: ' in a large team working under ' },
   { text: 'Scrum', accent: true },
   {
-    text: ' methodology. Over time, as I gained experience, I got the opportunity to take ownership of company projects, making my own architectural decisions on the frontend side. Today I apply that professional experience as a freelancer, integrating AI agent-driven development under ',
+    text: '. Over time I took ownership of complete products and made their frontend architecture decisions. Today I work with AI agents (',
   },
-  { text: 'SDD', accent: true },
-  { text: ' methodology and implementing ' },
-  { text: 'Skills', accent: true },
+  { text: 'Claude Code', accent: true },
   { text: ', ' },
-  { text: 'MCPs', accent: true },
-  { text: ', among others.' },
+  { text: 'MCP', accent: true },
+  { text: ') under ' },
+  { text: 'Spec-Driven Development', accent: true },
+  {
+    text: ': I design the architecture and write the specs, the agent implements under my direction, and I review and test every change. It lets me deliver faster without giving up technical judgment.',
+  },
 ];
