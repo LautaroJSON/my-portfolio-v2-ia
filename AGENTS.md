@@ -105,7 +105,8 @@ consultarlo primero. Este proyecto se mantiene deliberadamente liviano, cualquie
 │   ├── cv.md     (CV descargable, sección Contacto)
 │   └── content-model.md
 ├── public/
-│   ├── cv-lautaro-fernandez.pdf      (CV descargable, sección Contacto)
+│   ├── cv-lautaro-fernandez-en.pdf   (CV descargable EN, sección Contacto)
+│   ├── cv-lautaro-fernandez-es.pdf   (CV descargable ES, sección Contacto)
 │   └── og-image.png
 ├── src/
 │   ├── app/

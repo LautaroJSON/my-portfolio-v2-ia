@@ -278,7 +278,8 @@ IProject[]`), separado por idioma igual que `experience.ts` — el mismo
   - Email (`fernandez.n.lautaro@gmail.com`) — con ícono `Mail`, link `mailto:`
   - LinkedIn (`https://www.linkedin.com/in/lautaro-fernandez-json/`) — ícono `Linkedin`
   - GitHub (`https://github.com/LautaroJSON`) — ícono `Github`
-  - Botón/link de descarga de CV → `/cv-lautaro-fernandez.pdf` (agregar el
+  - Botón/link de descarga de CV → `/cv-lautaro-fernandez-{en|es}.pdf` según
+    el locale, servidos con `X-Robots-Tag: noindex` (agregar el
     PDF real a `public/`, no generarlo desde el `.md`)
 - No mostrar teléfono, DNI, dirección ni fecha de nacimiento (dato sensible,
   ver `AGENTS.md`).
