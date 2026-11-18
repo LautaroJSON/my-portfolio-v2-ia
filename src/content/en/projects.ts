@@ -8,12 +8,12 @@ export const PROJECTS: IProject[] = [
     id: 'randomplay',
     name: 'RandomPlay',
     description:
-      'Ticket booking system for a fictional cinema chain. Backend: ASP.NET Core 10 API with hexagonal architecture, EF Core and PostgreSQL, JWT authentication with role-based access (RBAC), 5-minute seat holds, all-or-nothing reservations, rate limiting and integration tests with Testcontainers. Frontend: Next.js with SEO-ready public pages, a typed API client generated from OpenAPI, and Playwright end-to-end tests with axe accessibility checks.',
+      'Ticket booking system for a fictional cinema chain, live end to end: from the movie listings to seat selection and payment. Buyers need no account: an anonymous cart holds the seats for 5 minutes with all-or-nothing reservations, and checkout runs on Mercado Pago Checkout Pro (test credentials) with signed webhooks, one ticket per seat and delivery emails queued through an Outbox. Backend: ASP.NET Core 10 API with hexagonal architecture, EF Core and PostgreSQL, JWT role-based access (RBAC), rate limiting and integration tests with Testcontainers, deployed on Render with Supabase. Frontend: Next.js 16 on Vercel. The movie listings and movie pages are indexable and revalidated every 60 seconds; the purchase flow covers seat selection, a cart with a countdown synced to the server clock, payment (the site never asks for card details) and a payment status page that shows each ticket with a tear-off stub. Typed API client generated from OpenAPI, unit and component tests with Vitest and MSW, and Playwright end-to-end tests run with and without JavaScript, including axe accessibility checks.',
     image: '/projects/randomplay.png',
     repoUrl: 'https://github.com/LautaroJSON/cinema-system-randomplay-frontend',
     backendRepoUrl:
       'https://github.com/LautaroJSON/cinema-system-randomplay-backend',
-    // deployUrl: pending — not deployed yet.
+    deployUrl: 'https://cinema-system-randomplay-frontend.vercel.app',
     technologies: [
       'C#',
       'ASP.NET Core',
@@ -21,6 +21,8 @@ export const PROJECTS: IProject[] = [
       'PostgreSQL',
       'Next.js',
       'TypeScript',
+      'Mercado Pago',
+      'Vitest',
       'Playwright',
       'Testcontainers',
     ],

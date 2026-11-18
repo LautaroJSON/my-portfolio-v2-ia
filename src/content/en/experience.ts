@@ -13,7 +13,7 @@ export const EXPERIENCES: IExperience[] = [
       {
         name: 'RandomPlay',
         description:
-          'Ticket booking system for a fictional cinema chain. ASP.NET Core 10 API with hexagonal architecture, EF Core and PostgreSQL, plus a Next.js frontend with a typed API client generated from OpenAPI.',
+          'Ticket booking system for a fictional cinema chain. ASP.NET Core 10 API with hexagonal architecture, EF Core and PostgreSQL, plus a Next.js frontend that covers the full purchase flow, from seat selection to the tickets, with a typed API client generated from OpenAPI. Deployed on Render and Vercel, with checkout through Mercado Pago.',
       },
       {
         name: 'Thinking Notes',
