@@ -10,6 +10,7 @@ export const PROJECTS: IProject[] = [
     description:
       'Ticket booking system for a fictional cinema chain, live end to end: from the movie listings to seat selection and payment. Buyers need no account: an anonymous cart holds the seats for 5 minutes with all-or-nothing reservations, and checkout runs on Mercado Pago Checkout Pro (test credentials) with signed webhooks, one ticket per seat and delivery emails queued through an Outbox. Backend: ASP.NET Core 10 API with hexagonal architecture, EF Core and PostgreSQL, JWT role-based access (RBAC), rate limiting and integration tests with Testcontainers, deployed on Render with Supabase. Frontend: Next.js 16 on Vercel. The movie listings and movie pages are indexable and revalidated every 60 seconds; the purchase flow covers seat selection, a cart with a countdown synced to the server clock, payment (the site never asks for card details) and a payment status page that shows each ticket with a tear-off stub. Typed API client generated from OpenAPI, unit and component tests with Vitest and MSW, and Playwright end-to-end tests run with and without JavaScript, including axe accessibility checks.',
     image: '/projects/randomplay.png',
+    video: '/projects/randomplay.webm',
     repoUrl: 'https://github.com/LautaroJSON/cinema-system-randomplay-frontend',
     backendRepoUrl:
       'https://github.com/LautaroJSON/cinema-system-randomplay-backend',
@@ -33,6 +34,7 @@ export const PROJECTS: IProject[] = [
     description:
       'Notes PWA for capturing quick ideas. It works without an account, keeping notes on the device (localStorage, with images in IndexedDB), or with Google sign-in through Supabase Auth to sync them across devices. Each note holds independent text or image thoughts, with debounced autosave, voice dictation through the Web Speech API, drag-and-drop reordering with dnd-kit, search, three visual themes and export to Markdown and PDF. Built with React 19, TypeScript and Vite, tested with Vitest and Testing Library on GitHub Actions and deployed on Vercel. The NestJS backend (separate repository) validates Supabase JWTs, stores data in PostgreSQL through Prisma and validates each typed thought with class-validator; signed-in images go to Supabase Storage.',
     image: '/projects/thinking-notes.png',
+    video: '/projects/thinking-notes.webm',
     repoUrl: 'https://github.com/LautaroJSON/thinking-notes',
     backendRepoUrl: 'https://github.com/LautaroJSON/thinking-notes-backend',
     deployUrl: 'https://thinkingnotes.app/',
@@ -45,6 +47,24 @@ export const PROJECTS: IProject[] = [
       'Prisma',
       'PostgreSQL',
       'Supabase',
+    ],
+  },
+  {
+    id: 'mymudae',
+    name: 'MyMudae',
+    description:
+      "Client-only web app to manage a harem from Mudae (a character-collecting gacha bot for Discord) outside Discord. You paste the message Mudae sends and it builds a profile with your series and characters: drag-and-drop reordering with dnd-kit (mouse and touch), search, kakera sorting, several profiles per Discord server, light and dark themes, and ready-to-paste $sm and $divorce commands split by Discord's message limit, always derived from the same state as the on-screen order. No backend: everything persists in localStorage. Modular monolith with a DDD-style layered architecture (domain, use cases and ports, infrastructure, presentation), a defensive parser for Mudae's message format, a render-performance test for 200+ characters and Vitest + Testing Library tests; every feature specified first with Spec Kit. Deployed on Netlify.",
+    image: '/projects/mymudae.png',
+    video: '/projects/mymudae.webm',
+    repoUrl: 'https://github.com/LautaroJSON/my-mudae',
+    deployUrl: 'https://mymudae.netlify.app/',
+    technologies: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'styled-components',
+      'dnd-kit',
+      'Vitest',
     ],
   },
   {
