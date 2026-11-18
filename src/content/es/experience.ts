@@ -21,6 +21,11 @@ export const EXPERIENCES: IExperience[] = [
           'PWA de notas hecha con React y TypeScript que funciona sin cuenta en el dispositivo o se sincroniza entre dispositivos con inicio de sesión con Google vía Supabase Auth, con dictado por voz y exportación a Markdown y PDF. Backend en NestJS que valida los JWT de Supabase, usa Prisma sobre PostgreSQL y valida los datos de entrada con class-validator.',
       },
       {
+        name: 'MyMudae',
+        description:
+          'App React 100 % cliente para organizar un harem de Mudae (bot gacha de Discord): orden por arrastre que genera los comandos de Discord correspondientes, con arquitectura en capas estilo DDD y todo guardado en localStorage.',
+      },
+      {
         name: 'Calorie Tracker',
         description:
           'App móvil local-first hecha con React Native y Expo, con releases de Android automatizados con GitHub Actions y EAS.',

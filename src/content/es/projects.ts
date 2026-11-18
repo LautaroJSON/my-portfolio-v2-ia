@@ -10,6 +10,7 @@ export const PROJECTS: IProject[] = [
     description:
       'Sistema de reserva de entradas para una cadena de cines ficticia, desplegado de punta a punta: desde la cartelera hasta la elección de butacas y el pago. No hace falta cuenta: un carrito anónimo retiene los asientos por 5 minutos con reservas todo o nada, y el pago funciona con Mercado Pago Checkout Pro (credenciales de prueba), con webhooks firmados, una entrada por asiento y emails de entrega encolados con un Outbox. Backend: API en ASP.NET Core 10 con arquitectura hexagonal, EF Core y PostgreSQL, acceso por roles con JWT (RBAC), rate limiting y tests de integración con Testcontainers, desplegada en Render con Supabase. Frontend: Next.js 16 en Vercel. La cartelera y las fichas de cada película son indexables y se revalidan cada 60 segundos; el flujo de compra cubre la elección de butacas, un carrito con cuenta regresiva sincronizada con el reloj del servidor, el pago (el sitio nunca pide datos de tarjeta) y una página con el estado del pago que muestra cada entrada como un ticket con talón. Cliente de API tipado generado desde OpenAPI, tests unitarios y de componentes con Vitest y MSW, y tests end-to-end con Playwright con y sin JavaScript, incluidos chequeos de accesibilidad con axe.',
     image: '/projects/randomplay.png',
+    video: '/projects/randomplay.webm',
     repoUrl: 'https://github.com/LautaroJSON/cinema-system-randomplay-frontend',
     backendRepoUrl:
       'https://github.com/LautaroJSON/cinema-system-randomplay-backend',
@@ -33,6 +34,7 @@ export const PROJECTS: IProject[] = [
     description:
       'PWA de notas para capturar ideas rápidas. Funciona sin cuenta, guardando las notas en el dispositivo (localStorage, con las imágenes en IndexedDB), o con inicio de sesión con Google vía Supabase Auth para sincronizarlas entre dispositivos. Cada nota agrupa pensamientos independientes de texto o imagen, con guardado automático con debounce, dictado por voz con la Web Speech API, orden por arrastre con dnd-kit, búsqueda, tres temas visuales y exportación a Markdown y PDF. Hecha con React 19, TypeScript y Vite, con tests en Vitest y Testing Library en GitHub Actions y desplegada en Vercel. El backend en NestJS (repositorio aparte) valida los JWT de Supabase, guarda los datos en PostgreSQL con Prisma y valida cada pensamiento tipado con class-validator; con sesión, las imágenes van a Supabase Storage.',
     image: '/projects/thinking-notes.png',
+    video: '/projects/thinking-notes.webm',
     repoUrl: 'https://github.com/LautaroJSON/thinking-notes',
     backendRepoUrl: 'https://github.com/LautaroJSON/thinking-notes-backend',
     deployUrl: 'https://thinkingnotes.app/',
@@ -45,6 +47,24 @@ export const PROJECTS: IProject[] = [
       'Prisma',
       'PostgreSQL',
       'Supabase',
+    ],
+  },
+  {
+    id: 'mymudae',
+    name: 'MyMudae',
+    description:
+      'Aplicación web 100 % cliente para organizar fuera de Discord un harem de Mudae (bot gacha de personajes para Discord). Pegás el mensaje que manda Mudae y arma un perfil con tus series y personajes: orden por arrastre con dnd-kit (mouse y touch), búsqueda, orden por kakera, varios perfiles por servidor de Discord, tema claro y oscuro, y comandos $sm y $divorce listos para pegar, partidos según el límite de mensajes de Discord y siempre derivados del mismo estado que el orden en pantalla. Sin backend: todo se guarda en localStorage. Monolito modular con arquitectura en capas estilo DDD (dominio, casos de uso y puertos, infraestructura, presentación), un parser defensivo para el formato de los mensajes de Mudae, un test de rendimiento de render con más de 200 personajes y tests con Vitest + Testing Library; cada feature se especificó primero con Spec Kit. Desplegada en Netlify.',
+    image: '/projects/mymudae.png',
+    video: '/projects/mymudae.webm',
+    repoUrl: 'https://github.com/LautaroJSON/my-mudae',
+    deployUrl: 'https://mymudae.netlify.app/',
+    technologies: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'styled-components',
+      'dnd-kit',
+      'Vitest',
     ],
   },
   {
