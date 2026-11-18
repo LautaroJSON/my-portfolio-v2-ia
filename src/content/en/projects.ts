@@ -31,15 +31,16 @@ export const PROJECTS: IProject[] = [
     id: 'thinking-notes',
     name: 'Thinking Notes',
     description:
-      'Notes PWA built with React, TypeScript and Vite, with Google sign-in through Supabase Auth. The NestJS backend (separate repository) validates Supabase JWTs, stores data in PostgreSQL through Prisma and validates input with class-validator.',
+      'Notes PWA for capturing quick ideas. It works without an account, keeping notes on the device (localStorage, with images in IndexedDB), or with Google sign-in through Supabase Auth to sync them across devices. Each note holds independent text or image thoughts, with debounced autosave, voice dictation through the Web Speech API, drag-and-drop reordering with dnd-kit, search, three visual themes and export to Markdown and PDF. Built with React 19, TypeScript and Vite, tested with Vitest and Testing Library on GitHub Actions and deployed on Vercel. The NestJS backend (separate repository) validates Supabase JWTs, stores data in PostgreSQL through Prisma and validates each typed thought with class-validator; signed-in images go to Supabase Storage.',
     image: '/projects/thinking-notes.png',
     repoUrl: 'https://github.com/LautaroJSON/thinking-notes',
     backendRepoUrl: 'https://github.com/LautaroJSON/thinking-notes-backend',
-    deployUrl: 'https://lautarojson.github.io/thinking-notes/',
+    deployUrl: 'https://thinkingnotes.app/',
     technologies: [
       'React',
       'TypeScript',
       'Vite',
+      'Vitest',
       'NestJS',
       'Prisma',
       'PostgreSQL',

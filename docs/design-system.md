@@ -489,16 +489,29 @@ NestJS]`) en vez de `TechBadge`: `font-mono text-sm`, corchetes y comas
     columna de info (`align-items: stretch` por defecto en flex), info a
     la derecha ocupando el resto (`flex-1`). Mismo componente, no hay un
     `ProjectCardHorizontal` aparte.
+  - **Alto uniforme**: todas las cards miden lo mismo, sin importar el
+    largo del texto. En `landscape` la card entera tiene alto fijo
+    (`h-68`); en `portrait` el bloque de info tiene alto fijo (`h-116`)
+    debajo de una media `aspect-video` que mide igual en todas. Si la
+    descripción no entra, **scrollea dentro de su propio recuadro**
+    (`overflow-y-auto`, con el scrollbar global) en vez de estirar la card.
+    Ese recuadro es focuseable (`tabIndex={0}`, `role="region"` con
+    `aria-label` traducido) para poder scrollearlo con teclado. Una card
+    sin imagen en `portrait` queda más baja, porque no hay media (ver 1.).
   1. **Media** (`object-cover`) — opcional. Capturas en
      `public/projects/{id}.png`, **1200×675 px (16:9)**. Si el proyecto no
      tiene `image`, o el archivo todavía no existe en `/public` (se verifica
      en build con `publicAssetExists`), el bloque de media **no se
      renderiza**: la card queda solo con la info, sin recuadro vacío ni
      placeholder.
+     En hover la imagen hace un zoom suave (`scale-110`, 500 ms, `ease-out`,
+     recortado por `overflow-hidden`): es respuesta a una interacción, no
+     animación ambiental, y solo corre con `motion-safe` (con
+     `prefers-reduced-motion: reduce` la imagen queda quieta).
   2. **Título** — sans, bold, nombre propio del proyecto (no se traduce).
-  3. **Descripción breve** — sans, `text-secondary`, `flex-1` (empuja los
-     botones al pie de la card aunque la descripción sea corta, para
-     alinear la fila de acciones entre cards de distinta altura).
+  3. **Descripción breve** — sans, `text-secondary`, dentro de un recuadro
+     `flex-1` con scroll (empuja los botones al pie de la card aunque la
+     descripción sea corta, y scrollea si es larga — ver "Alto uniforme").
   4. **Tech tags** (opcional) — mismo tratamiento que `TechBadge` de
      Experience.
   5. **Acciones** — hasta dos `LinkButton`: "Live demo" (`primary`, solo
