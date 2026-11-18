@@ -504,10 +504,37 @@ NestJS]`) en vez de `TechBadge`: `font-mono text-sm`, corchetes y comas
      en build con `publicAssetExists`), el bloque de media **no se
      renderiza**: la card queda solo con la info, sin recuadro vacío ni
      placeholder.
-     En hover la imagen hace un zoom suave (`scale-110`, 500 ms, `ease-out`,
-     recortado por `overflow-hidden`): es respuesta a una interacción, no
-     animación ambiental, y solo corre con `motion-safe` (con
-     `prefers-reduced-motion: reduce` la imagen queda quieta).
+     En hover (`ProjectMedia`, client component), una de dos:
+     - **Con `video`**: reproduce un clip corto de demo (WebM VP9, sin
+       sonido, en loop, ~10–15 s, < 300 KB) encima de la captura, con un
+       fundido de opacidad. Arranca de cero en cada hover y se pausa al
+       salir. `preload="none"`: no se descarga hasta el primer hover. Es
+       decorativo (`aria-hidden`, muestra lo mismo que la captura).
+       Mientras se reproduce, una línea de progreso de 2px (`h-0.5`) en el
+       borde inferior simula el avance del video: relleno `--color-accent`
+       sobre un riel `void/60`, movido con `requestAnimationFrame` (no con
+       `timeupdate`, que avanza a saltos).
+       **Clic / tap / teclado**: toda la media es un `<button>` que abre el
+       clip grande en un modal (`DemoVideoDialog`, `<dialog>` nativo con
+       `showModal()`: foco atrapado, Escape y backdrop `void/80` con blur;
+       también cierra con clic en el backdrop o la X, y el foco vuelve al
+       botón). Controles nativos del video; solo autoplay sin
+       `prefers-reduced-motion`. Un chip `▶ Ver demo` (`font-mono text-xs`,
+       ámbar en hover/focus) lo hace descubrible: con mouse aparece en
+       hover/focus (`pointer-fine:`), en pantallas táctiles está siempre
+       visible (`pointer-coarse:`, no hay hover). En mobile el modal ocupa
+       el ancho (`100vw - 2rem`) y suma un botón **Pantalla completa** (solo
+       `pointer-coarse:`): Fullscreen API sobre el `<video>` + bloqueo a
+       horizontal donde se puede (Android); en iOS, el reproductor nativo
+       (`webkitEnterFullscreen`), que rota solo.
+     - **Sin `video`**: la imagen hace un zoom suave (`scale-110`, 500 ms,
+       `ease-out`, recortado por `overflow-hidden`).
+
+     Es respuesta a una interacción, no animación ambiental. Solo corre con
+     mouse (`pointerType === 'mouse'`; con touch queda la captura) y con
+     `prefers-reduced-motion: reduce` no hay ni clip ni zoom. Un navegador
+     que no reproduce WebM VP9 sigue mostrando la captura.
+
   2. **Título** — sans, bold, nombre propio del proyecto (no se traduce).
   3. **Descripción breve** — sans, `text-secondary`, dentro de un recuadro
      `flex-1` con scroll (empuja los botones al pie de la card aunque la

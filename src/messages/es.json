@@ -63,6 +63,12 @@
     "codeAria": "Ver el código fuente de {name} en GitHub",
     "backendCode": "Backend",
     "backendCodeAria": "Ver el código fuente del backend de {name} en GitHub",
-    "descriptionAria": "Descripción de {name}"
+    "descriptionAria": "Descripción de {name}",
+    "watchDemo": "Ver demo",
+    "watchDemoAria": "Ver el video de demo de {name}",
+    "demoDialogTitle": "{name} — demo",
+    "demoDialogAria": "Video de demo de {name}",
+    "closeDemo": "Cerrar video",
+    "fullscreenDemo": "Pantalla completa"
   }
 }

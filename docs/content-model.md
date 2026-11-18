@@ -76,6 +76,7 @@ interface IProject {
   name: string;
   description: string;
   image?: string; // path en /public, ej. "/projects/thinking-notes.png"
+  video?: string; // clip WebM corto que se reproduce en hover sobre la imagen, ej. "/projects/thinking-notes.webm"
   repoUrl: string;
   deployUrl?: string; // opcional — no todos los proyectos tienen deploy público
   technologies?: string[];
@@ -257,7 +258,8 @@ IProject[]`), separado por idioma igual que `experience.ts` — el mismo
 - Con entradas: grilla `grid-cols-1 sm:grid-cols-2` de `ProjectCard`,
   mobile-first — ver `design-system.md` para el detalle visual.
 - Imágenes: opcionales, sueltas en `public/projects/*.png`, referenciadas
-  por path relativo en `image`. Sin imagen → placeholder decorativo (no
+  por path relativo en `image`. `video` (opcional, `public/projects/*.webm`)
+  solo se usa si también hay `image`: es el clip que se reproduce en hover. Sin imagen → placeholder decorativo (no
   colapsa el bloque, mantiene el ritmo de la grilla).
 - `repoUrl` es obligatorio (siempre hay repo); `deployUrl` y
   `technologies` son opcionales — el botón de demo solo se renderiza si
