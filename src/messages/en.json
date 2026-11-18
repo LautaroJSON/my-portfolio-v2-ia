@@ -62,6 +62,7 @@
     "code": "Code",
     "codeAria": "View {name} source code on GitHub",
     "backendCode": "Backend",
-    "backendCodeAria": "View {name} backend source code on GitHub"
+    "backendCodeAria": "View {name} backend source code on GitHub",
+    "descriptionAria": "{name} description"
   }
 }

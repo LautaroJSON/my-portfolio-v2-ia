@@ -19,27 +19,42 @@ export const ProjectCard = async ({ project }: IProjectCardProps) => {
     project.image && publicAssetExists(project.image) ? project.image : null;
 
   return (
-    <article className="border-border-subtle flex flex-col overflow-hidden rounded-lg border landscape:flex-row">
+    // Every card has the same height (fixed in landscape; fixed info block in
+    // portrait, under a media block whose 16:9 height is the same for all), so
+    // the list reads as a uniform column. A description longer than that
+    // scrolls inside its own box instead of stretching the card.
+    <article className="border-border-subtle flex flex-col overflow-hidden rounded-lg border landscape:h-68 landscape:flex-row">
       {image && (
-        <div className="bg-sidebar-bg border-border-subtle relative aspect-video border-b landscape:aspect-auto landscape:w-64 landscape:shrink-0 landscape:border-e landscape:border-b-0">
+        <div className="group/media bg-sidebar-bg border-border-subtle relative aspect-video overflow-hidden border-b landscape:aspect-auto landscape:w-64 landscape:shrink-0 landscape:border-e landscape:border-b-0">
           <Image
             src={image}
             alt=""
             fill
-            sizes="(orientation: landscape) 256px, 100vw"
-            className="object-cover"
+            // Landscape crops a 16:9 image into a 256px-wide column as tall as
+            // the card, so the rendered width follows the card height
+            // (~16/9 of it), not 256px.
+            sizes="(orientation: landscape) 1024px, 100vw"
+            className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out motion-safe:group-hover/media:scale-110"
           />
         </div>
       )}
 
-      <div className="flex flex-1 flex-col gap-3 p-4">
+      <div className="flex h-116 min-h-0 flex-none flex-col gap-3 p-4 landscape:h-auto landscape:flex-1">
         <h2 className="text-text-primary text-lg font-bold tracking-tight">
           {project.name}
         </h2>
 
-        <p className="text-text-secondary flex-1 text-sm leading-relaxed">
-          {project.description}
-        </p>
+        {/* Focusable so keyboard users can scroll it when it overflows. */}
+        <div
+          role="region"
+          aria-label={t('descriptionAria', { name: project.name })}
+          tabIndex={0}
+          className="focus-visible:outline-accent min-h-0 flex-1 overflow-y-auto pe-2 focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {project.description}
+          </p>
+        </div>
 
         {project.technologies && project.technologies.length > 0 && (
           <div className="flex flex-wrap gap-x-2 gap-y-1">
