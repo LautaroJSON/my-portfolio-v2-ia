@@ -18,7 +18,7 @@ export const EXPERIENCES: IExperience[] = [
       {
         name: 'Thinking Notes',
         description:
-          'Notes PWA built with React and TypeScript, with Google sign-in through Supabase Auth. NestJS backend that validates Supabase JWTs, uses Prisma over PostgreSQL and validates input with class-validator.',
+          'Notes PWA built with React and TypeScript that works without an account, keeping notes on the device, or syncs across devices with Google sign-in through Supabase Auth, with voice dictation and Markdown/PDF export. NestJS backend that validates Supabase JWTs, uses Prisma over PostgreSQL and validates input with class-validator.',
       },
       {
         name: 'Calorie Tracker',
