@@ -13,7 +13,7 @@ export const EXPERIENCES: IExperience[] = [
       {
         name: 'RandomPlay',
         description:
-          'Sistema de reserva de entradas para una cadena de cines ficticia. API en ASP.NET Core 10 con arquitectura hexagonal, EF Core y PostgreSQL, y un frontend en Next.js con un cliente de API tipado generado desde OpenAPI.',
+          'Sistema de reserva de entradas para una cadena de cines ficticia. API en ASP.NET Core 10 con arquitectura hexagonal, EF Core y PostgreSQL, y un frontend en Next.js que cubre todo el flujo de compra, desde la elección de butacas hasta las entradas, con un cliente de API tipado generado desde OpenAPI. Desplegado en Render y Vercel, con pago a través de Mercado Pago.',
       },
       {
         name: 'Thinking Notes',

@@ -8,12 +8,12 @@ export const PROJECTS: IProject[] = [
     id: 'randomplay',
     name: 'RandomPlay',
     description:
-      'Sistema de reserva de entradas para una cadena de cines ficticia. Backend: API en ASP.NET Core 10 con arquitectura hexagonal, EF Core y PostgreSQL, autenticación JWT con acceso por roles (RBAC), retención de asientos por 5 minutos, reservas todo o nada, rate limiting y tests de integración con Testcontainers. Frontend: Next.js con páginas públicas preparadas para SEO, un cliente de API tipado generado desde OpenAPI y tests end-to-end con Playwright y chequeos de accesibilidad con axe.',
+      'Sistema de reserva de entradas para una cadena de cines ficticia, desplegado de punta a punta: desde la cartelera hasta la elección de butacas y el pago. No hace falta cuenta: un carrito anónimo retiene los asientos por 5 minutos con reservas todo o nada, y el pago funciona con Mercado Pago Checkout Pro (credenciales de prueba), con webhooks firmados, una entrada por asiento y emails de entrega encolados con un Outbox. Backend: API en ASP.NET Core 10 con arquitectura hexagonal, EF Core y PostgreSQL, acceso por roles con JWT (RBAC), rate limiting y tests de integración con Testcontainers, desplegada en Render con Supabase. Frontend: Next.js 16 en Vercel. La cartelera y las fichas de cada película son indexables y se revalidan cada 60 segundos; el flujo de compra cubre la elección de butacas, un carrito con cuenta regresiva sincronizada con el reloj del servidor, el pago (el sitio nunca pide datos de tarjeta) y una página con el estado del pago que muestra cada entrada como un ticket con talón. Cliente de API tipado generado desde OpenAPI, tests unitarios y de componentes con Vitest y MSW, y tests end-to-end con Playwright con y sin JavaScript, incluidos chequeos de accesibilidad con axe.',
     image: '/projects/randomplay.png',
     repoUrl: 'https://github.com/LautaroJSON/cinema-system-randomplay-frontend',
     backendRepoUrl:
       'https://github.com/LautaroJSON/cinema-system-randomplay-backend',
-    // deployUrl: pendiente — todavía no está desplegado.
+    deployUrl: 'https://cinema-system-randomplay-frontend.vercel.app',
     technologies: [
       'C#',
       'ASP.NET Core',
@@ -21,6 +21,8 @@ export const PROJECTS: IProject[] = [
       'PostgreSQL',
       'Next.js',
       'TypeScript',
+      'Mercado Pago',
+      'Vitest',
       'Playwright',
       'Testcontainers',
     ],
